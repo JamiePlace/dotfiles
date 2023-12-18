@@ -1,0 +1,100 @@
+-- The only required line is this one.
+local wezterm = require 'wezterm'
+local mux = wezterm.mux
+local act = wezterm.action
+-- Some empty tables for later use
+local config = {}
+local mouse_bindings = {}
+local launch_menu = {}
+
+local keys = {
+	-- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
+	{ key = '8', mods = 'CTRL', action = act.PaneSelect },
+	-- activate pane selection mode with numeric labels
+	{
+		key = '9',
+		mods = 'CTRL',
+		action = act.PaneSelect {
+			alphabet = '1234567890',
+		},
+	},
+	-- show the pane selection mode, but have it swap the active and selected panes
+	{
+		key = '0',
+		mods = 'CTRL',
+		action = act.PaneSelect {
+			mode = 'SwapWithActive',
+		},
+	},
+	-- This will create a new split and run your default program inside it
+	{
+		key = "'",
+		mods = 'CTRL',
+		action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+	},
+	{
+		key = ";",
+		mods = 'CTRL',
+		action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+	},
+	{
+		key = '0',
+		mods = 'CTRL',
+		action = wezterm.action.CloseCurrentPane { confirm = true },
+	},
+	{
+		key = 'LeftArrow',
+		mods = 'CTRL',
+		action = act.ActivatePaneDirection 'Left',
+	},
+	{
+		key = 'RightArrow',
+		mods = 'CTRL',
+		action = act.ActivatePaneDirection 'Right',
+	},
+	{
+		key = 'UpArrow',
+		mods = 'CTRL',
+		action = act.ActivatePaneDirection 'Up',
+	},
+	{
+		key = 'DownArrow',
+		mods = 'CTRL',
+		action = act.ActivatePaneDirection 'Down',
+	},
+	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
+}
+
+--- Set Pwsh as the default on Windows
+config.default_prog = { 'powershell.exe', '-NoLogo' }
+
+mouse_bindings = {
+  {
+    event = { Down = { streak = 3, button = 'Left' } },
+    action = wezterm.action.SelectTextAtMouseCursor 'SemanticZone',
+    mods = 'NONE',
+  },
+}
+
+--- Default config settings
+config.color_scheme = 'AdventureTime'
+config.font = wezterm.font('JetBrains Mono')
+config.font_size = 12
+config.launch_menu = launch_menu
+config.default_cursor_style = 'BlinkingBar'
+config.disable_default_key_bindings = true
+config.keys = keys
+config.mouse_bindings = mouse_bindings
+config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/eclipse.jpeg"
+config.window_background_image_hsb = {
+  -- Darken the background image by reducing it to 1/3rd
+  brightness = 0.1,
+
+  -- You can adjust the hue by scaling its value.
+  -- a multiplier of 1.0 leaves the value unchanged.
+  hue = 1,
+
+  -- You can adjust the saturation also.
+  saturation = 1,
+}
+return config
