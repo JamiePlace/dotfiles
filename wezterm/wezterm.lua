@@ -65,17 +65,16 @@ local keys = {
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
 }
 
-function on_mac()
-    if package.config:sub(1,1) == "/" then
-        return true
-
+function on_unix()
+    if (package.config:sub(1,1)) == ("\\") then
+        return false
     end
-    return false
+    return true
 end
 
-if not on_mac then
+if not on_unix() then
     --- Set Pwsh as the default on Windows
-    config.default_prog = { 'powershell.exe', '-NoLogo' }
+    config.default_prog = { 'powershell', '-NoLogo' }
 end
 
 mouse_bindings = {
@@ -102,7 +101,7 @@ config.default_cursor_style = 'BlinkingBar'
 config.disable_default_key_bindings = true
 config.keys = keys
 config.mouse_bindings = mouse_bindings
-if not on_mac() then
+if not on_unix() then
     config.font_size = 12
     --config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/eclipse.jpeg"
     --config.window_background_image_hsb = {
@@ -118,7 +117,7 @@ if not on_mac() then
     --}
 end
 
-if on_mac() then
+if on_unix() then
     config.font_size = 16
     --config.window_background_image = "/Users/jamieplace/Pictures/mystic_mountain.png"
     --config.window_background_image_hsb = {
