@@ -65,36 +65,72 @@ local keys = {
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
 }
 
---- Set Pwsh as the default on Windows
-config.default_prog = { 'powershell.exe', '-NoLogo' }
+function on_mac()
+    if package.config:sub(1,1) == "/" then
+        return true
+
+    end
+    return false
+end
+
+if not on_mac then
+    --- Set Pwsh as the default on Windows
+    config.default_prog = { 'powershell.exe', '-NoLogo' }
+end
 
 mouse_bindings = {
-  {
-    event = { Down = { streak = 3, button = 'Left' } },
-    action = wezterm.action.SelectTextAtMouseCursor 'SemanticZone',
-    mods = 'NONE',
-  },
+    {
+        event = { Down = { streak = 1, button = "Right" } },
+        mods = "NONE",
+        action = wezterm.action_callback(function(window, pane)
+            local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+            if has_selection then
+                window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+                window:perform_action(act.ClearSelection, pane)
+            else
+                window:perform_action(act({ PasteFrom = "Clipboard" }), pane)
+            end
+        end),
+    },
 }
 
 --- Default config settings
-config.color_scheme = 'AdventureTime'
-config.font = wezterm.font('JetBrains Mono')
-config.font_size = 12
+config.color_scheme = 'Catppuccin Macchiato'
+config.font = wezterm.font('Fira Code')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'BlinkingBar'
 config.disable_default_key_bindings = true
 config.keys = keys
 config.mouse_bindings = mouse_bindings
-config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/eclipse.jpeg"
-config.window_background_image_hsb = {
-  -- Darken the background image by reducing it to 1/3rd
-  brightness = 0.1,
+if not on_mac() then
+    config.font_size = 12
+    --config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/eclipse.jpeg"
+    --config.window_background_image_hsb = {
+    --  -- Darken the background image by reducing it to 1/3rd
+    --  brightness = 0.1,
 
-  -- You can adjust the hue by scaling its value.
-  -- a multiplier of 1.0 leaves the value unchanged.
-  hue = 1,
+    --  -- You can adjust the hue by scaling its value.
+    --  -- a multiplier of 1.0 leaves the value unchanged.
+    --  hue = 1,
 
-  -- You can adjust the saturation also.
-  saturation = 1,
-}
+    --  -- You can adjust the saturation also.
+    --  saturation = 1,
+    --}
+end
+
+if on_mac() then
+    config.font_size = 16
+    --config.window_background_image = "/Users/jamieplace/Pictures/mystic_mountain.png"
+    --config.window_background_image_hsb = {
+    --    -- Darken the background image by reducing it to 1/3rd
+    --    brightness = 0.15,
+
+    --    -- You can adjust the hue by scaling its value.
+    --    -- a multiplier of 1.0 leaves the value unchanged.
+    --    hue = 1,
+
+    --    -- You can adjust the saturation also.
+    --    saturation = 1,
+    --}
+end
 return config

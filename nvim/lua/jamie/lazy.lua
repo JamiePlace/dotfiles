@@ -26,7 +26,6 @@ require("lazy").setup({
         })
     end
     },
-    {"nvim-treesitter/nvim-treesitter-context"};
     -- lsp
     {'VonHeikemen/lsp-zero.nvim',
     branch = 'v1.x',
