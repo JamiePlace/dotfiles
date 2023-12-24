@@ -3,7 +3,6 @@ require("jamie.remap")
 require("jamie.lspconfig")
 require("jamie.colours")
 require("jamie.set")
-require("jamie.telescope")
 
 
 -- vim.g.netrw_browse_split = 0
