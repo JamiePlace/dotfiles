@@ -69,8 +69,6 @@ require("lazy").setup({
         {"github/copilot.vim"},
         -- csv
         {'mechatroner/rainbow_csv'},
-        -- repl
-        {'Vigemus/iron.nvim'}
 })
 
 
