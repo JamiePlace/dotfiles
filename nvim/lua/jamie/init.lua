@@ -2,6 +2,7 @@ require("jamie.lazy")
 require("jamie.remap")
 require("jamie.lspconfig")
 require("jamie.colours")
+require("jamie.iron")
 require("jamie.set")
 
 
