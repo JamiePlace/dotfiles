@@ -6,10 +6,32 @@ vim.keymap.set("n", "<leader>pl", '"*p')
 vim.keymap.set("n", "<leader>yl", '"*y')
 vim.keymap.set("v", "<leader>pl", '"*p')
 vim.keymap.set("v", "<leader>yl", '"*y')
--- vim.keymap.set('n', '<leader>sv', vim.cmd('source $MYVIMRC'))
--- Code Runner
+-- Move selected line / block of text in visual mode
+vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
+vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+-- Move current line / block with Alt-j/k ala vscode.
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
+vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
+vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv-gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv-gv", { noremap = true, silent = true })
+-- better window movement
+vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
+-- better indenting
+vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
+vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
+-- move in and out of terminal 
+vim.keymap.set("t", "<C-b>", "<C-\\><C-n>", { silent = true })
 vim.keymap.set("i", "<C-c>", "<Esc>")
-
+-- resize with arrows
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 -- jump to previous buffer
 vim.keymap.set("n", "<leader>ll", "<C-6>")
 
