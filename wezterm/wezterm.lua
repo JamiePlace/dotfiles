@@ -7,6 +7,13 @@ local config = {}
 local mouse_bindings = {}
 local launch_menu = {}
 
+function OnUnix()
+    if (package.config:sub(1,1)) == ("\\") then
+        return false
+    end
+    return true
+end
+
 local keys = {
 	-- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
 	{ key = '8', mods = 'CTRL', action = act.PaneSelect },
@@ -43,36 +50,30 @@ local keys = {
 		action = wezterm.action.CloseCurrentPane { confirm = true },
 	},
 	{
-		key = 'LeftArrow',
+		key = 'h',
 		mods = 'CTRL',
 		action = act.ActivatePaneDirection 'Left',
 	},
 	{
-		key = 'RightArrow',
+		key = 'l',
 		mods = 'CTRL',
 		action = act.ActivatePaneDirection 'Right',
 	},
 	{
-		key = 'UpArrow',
+		key = 'k',
 		mods = 'CTRL',
 		action = act.ActivatePaneDirection 'Up',
 	},
 	{
-		key = 'DownArrow',
+		key = 'j',
 		mods = 'CTRL',
 		action = act.ActivatePaneDirection 'Down',
 	},
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
 }
 
-function on_unix()
-    if (package.config:sub(1,1)) == ("\\") then
-        return false
-    end
-    return true
-end
 
-if not on_unix() then
+if not OnUnix() then
     --- Set Pwsh as the default on Windows
     config.default_prog = { 'powershell', '-NoLogo' }
 end
@@ -101,7 +102,8 @@ config.default_cursor_style = 'BlinkingBar'
 config.disable_default_key_bindings = true
 config.keys = keys
 config.mouse_bindings = mouse_bindings
-if not on_unix() then
+config.send_composed_key_when_left_alt_is_pressed = true
+if not OnUnix() then
     config.font_size = 12
     --config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/eclipse.jpeg"
     --config.window_background_image_hsb = {
@@ -117,7 +119,7 @@ if not on_unix() then
     --}
 end
 
-if on_unix() then
+if OnUnix() then
     config.font_size = 16
     --config.window_background_image = "/Users/jamieplace/Pictures/mystic_mountain.png"
     --config.window_background_image_hsb = {
