@@ -69,6 +69,15 @@ require("lazy").setup({
         {"github/copilot.vim"},
         -- csv
         {'mechatroner/rainbow_csv'},
+        -- zenmode
+        {
+          "folke/zen-mode.nvim",
+          opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+          }
+        }
 })
 
 
