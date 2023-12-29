@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("t", "<leader>pv", "<C-\\><C-n> :b# | Ex <CR>", {silent = true})
 -- return to previous buffer
 vim.keymap.set("t", "<C-a>", "<C-\\><C-n> :b# <CR>", { silent = true })
 vim.keymap.set("n", "<C-a>", ":b# <CR>", { silent = true })
