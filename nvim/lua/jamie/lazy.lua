@@ -67,8 +67,6 @@ require("lazy").setup({
         },
         -- copilot
         {"github/copilot.vim"},
-        -- csv
-        {'mechatroner/rainbow_csv'},
         -- zenmode
         {
           "folke/zen-mode.nvim",
