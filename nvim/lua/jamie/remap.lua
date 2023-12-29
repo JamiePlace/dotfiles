@@ -21,6 +21,7 @@ vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 -- move in and out of terminal 
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
+vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { silent = true })
 vim.keymap.set("i", "<C-c>", "<Esc>")
 -- resize with arrows
 vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { silent = true })
