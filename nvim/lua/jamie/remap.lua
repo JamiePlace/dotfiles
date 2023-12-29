@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- return to previous buffer
+vim.keymap.set("t", "<C-a>", "<C-\\><C-n> :b# <CR>", { silent = true })
+vim.keymap.set("n", "<C-a>", ":b# <CR>", { silent = true })
 
 --paste and copy from clipboard
 vim.keymap.set("n", "<leader>pl", '"*p')
@@ -22,7 +25,7 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 -- move in and out of terminal 
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
 vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { silent = true })
-vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set({"i", "v", "n"}, "<C-c>", "<Esc>")
 -- resize with arrows
 vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { silent = true })
