@@ -37,6 +37,13 @@ vim.keymap.set('n', '<leader>fg', function() builtin.live_grep({path_display = {
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fr',function() builtin.lsp_references({show_line=false, path_display = { "truncate" }}) end, { noremap = true, silent = true})
+-- trouble
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
 
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
