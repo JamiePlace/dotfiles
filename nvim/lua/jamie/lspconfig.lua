@@ -36,6 +36,13 @@ lsp.set_preferences({
     }
 })
 
+function Format()
+    vim.cmd("silent !black --quiet %")
+    vim.cmd("edit")
+    vim.cmd("silent !isort --quiet %")
+    vim.cmd("edit")
+end
+
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
@@ -49,7 +56,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-  vim.keymap.set("n", "<C-f>", function() vim.lsp.buf.format() end, opts)
+  vim.keymap.set("n", "<C-f>", function() Format() end, opts)
+
 end)
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -78,18 +86,4 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
-vim.api.nvim_create_augroup("AutoFormat", {})
 
-vim.api.nvim_create_autocmd(
-    "BufWritePost",
-    {
-        pattern = "*.py",
-        group = "AutoFormat",
-        callback = function()
-            vim.cmd("silent !black --quiet %")
-            vim.cmd("edit")
-            vim.cmd("silent !isort --quiet %")
-            vim.cmd("edit")
-        end,
-    }
-)
