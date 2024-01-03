@@ -50,7 +50,9 @@ vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist"
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
 -- open terminal
 vim.keymap.set("n", "<leader>rt", ":vsplit<CR><C-w>l:te<CR>")
-
+vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
+-- python debugger
+vim.keymap.set("n", "<leader>br", "obreakpoint()<C-c>")
 
 
 vim.g.copilot_no_tab_map = true
