@@ -84,7 +84,10 @@ require("lazy").setup({
              -- or leave it empty to use the default settings
              -- refer to the configuration section below
             },
-        }
+        },
+        -- dap
+        { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", 'mfussenegger/nvim-dap-python'} },
+        { "folke/neodev.nvim", opts = {} }
 })
 
 
