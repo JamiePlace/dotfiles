@@ -1,3 +1,13 @@
+-- this is changing where all text is yanked too by default 
+-- to enable pasting into the repl for debugging
+local function add_line(line)
+  local lnum = vim.fn.line('$')
+  line = string.gsub(line, "\n", "")
+  vim.api.nvim_buf_set_lines(0, lnum - 1, lnum, true, {'dap> ' .. line})
+  vim.cmd('startinsert!')
+end
+vim.keymap.set('n', 'p', function() add_line(vim.fn.getreg('"')) end, {buffer = 0})
+
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("t", "<leader>pv", "<C-\\><C-n> :b# | Ex <CR>", {silent = true})
