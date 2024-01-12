@@ -95,7 +95,8 @@ require("lazy").setup({
             "mfussenegger/nvim-dap",
             'mfussenegger/nvim-dap-python',
             "LiadOz/nvim-dap-repl-highlights"
-        }
+        },
+        build = ":TSInstall dap-repl"
     },
     { "folke/neodev.nvim", opts = {} }
 })
