@@ -1,4 +1,5 @@
 require("dap-python").setup("python")
+require('nvim-dap-repl-highlights').setup()
 -- read .vscode/launch.json
 require('dap.ext.vscode').load_launchjs()
 require("dap").configurations.python = {
@@ -29,4 +30,3 @@ vim.keymap.set("n", "<leader>de", ':DapTerminate<CR>', { noremap = true, silent 
 
 
 vim.keymap.set('n', '<C-s>', ':lua require("dapui").eval()<CR>',{ noremap = true, silent = true })
-vim.keymap.set('v', '<C-s>', ':lua require("dapui").eval()<CR>',{ noremap = true, silent = true })
