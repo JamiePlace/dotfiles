@@ -103,6 +103,8 @@ config.disable_default_key_bindings = true
 config.keys = keys
 config.mouse_bindings = mouse_bindings
 config.send_composed_key_when_left_alt_is_pressed = true
+config.initial_rows = 60
+config.initial_cols = 200
 if not OnUnix() then
     config.font_size = 12
     --config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/eclipse.jpeg"
