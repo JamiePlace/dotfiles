@@ -59,3 +59,7 @@ vim.g.copilot_filetypes = {
 	["rust"] = true,
 	["python"] = true,
 }
+
+-- my repl solution
+vim.keymap.set('n', "<leader>]", "yy<C-w>lp")
+vim.keymap.set('v', "<leader>]", "y<C-w>lp")
