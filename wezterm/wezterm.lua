@@ -107,18 +107,18 @@ config.initial_rows = 60
 config.initial_cols = 200
 if not OnUnix() then
     config.font_size = 12
-    --config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/eclipse.jpeg"
-    --config.window_background_image_hsb = {
-    --  -- Darken the background image by reducing it to 1/3rd
-    --  brightness = 0.1,
+    config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/portal.png"
+    config.window_background_image_hsb = {
+      -- Darken the background image by reducing it to 1/3rd
+      brightness = 0.3,
 
-    --  -- You can adjust the hue by scaling its value.
-    --  -- a multiplier of 1.0 leaves the value unchanged.
-    --  hue = 1,
+      -- You can adjust the hue by scaling its value.
+      -- a multiplier of 1.0 leaves the value unchanged.
+      hue = 1,
 
-    --  -- You can adjust the saturation also.
-    --  saturation = 1,
-    --}
+      -- You can adjust the saturation also.
+      saturation = 1,
+    }
 end
 
 if OnUnix() then
