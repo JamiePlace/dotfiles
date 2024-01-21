@@ -125,6 +125,8 @@ if OnUnix() then
     config.initial_rows = 50
     config.initial_cols = 180
     config.font_size = 16
+    config.window_background_opacity = 0.85
+    config.text_background_opacity = 0.5
     --config.window_background_image = "/Users/jamieplace/Pictures/mystic_mountain.png"
     --config.window_background_image_hsb = {
     --    -- Darken the background image by reducing it to 1/3rd
