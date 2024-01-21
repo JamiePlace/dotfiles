@@ -103,9 +103,9 @@ config.disable_default_key_bindings = true
 config.keys = keys
 config.mouse_bindings = mouse_bindings
 config.send_composed_key_when_left_alt_is_pressed = true
-config.initial_rows = 60
-config.initial_cols = 200
 if not OnUnix() then
+    config.initial_rows = 60
+    config.initial_cols = 200
     config.font_size = 12
     config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/portal.png"
     config.window_background_image_hsb = {
@@ -122,6 +122,8 @@ if not OnUnix() then
 end
 
 if OnUnix() then
+    config.initial_rows = 50
+    config.initial_cols = 180
     config.font_size = 16
     --config.window_background_image = "/Users/jamieplace/Pictures/mystic_mountain.png"
     --config.window_background_image_hsb = {
