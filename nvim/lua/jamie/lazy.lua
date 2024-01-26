@@ -12,7 +12,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- theme
-    {"ellisonleao/gruvbox.nvim" },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",

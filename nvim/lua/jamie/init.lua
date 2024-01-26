@@ -7,6 +7,8 @@ require("jamie.set")
 require("jamie.neodev")
 require("jamie.dap")
 require("jamie.dapui")
+require("jamie.cellularautomaton")
+
 
 if vim.fn.has('macunix') == 0 then
     vim.cmd([[

@@ -95,7 +95,7 @@ mouse_bindings = {
 }
 
 --- Default config settings
-config.color_scheme = 'Catppuccin Macchiato'
+config.color_scheme = 'tokyonight-night'
 config.font = wezterm.font('Fira Code')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'BlinkingBar'
@@ -107,18 +107,8 @@ if not OnUnix() then
     config.initial_rows = 60
     config.initial_cols = 200
     config.font_size = 12
-    config.window_background_image = "C:/Users/jamie/Pictures/wallpapers/portal.png"
-    config.window_background_image_hsb = {
-      -- Darken the background image by reducing it to 1/3rd
-      brightness = 0.3,
-
-      -- You can adjust the hue by scaling its value.
-      -- a multiplier of 1.0 leaves the value unchanged.
-      hue = 1,
-
-      -- You can adjust the saturation also.
-      saturation = 1,
-    }
+    config.window_background_opacity = 0.85
+    config.text_background_opacity = 0.5
 end
 
 if OnUnix() then
