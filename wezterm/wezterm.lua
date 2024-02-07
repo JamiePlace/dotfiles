@@ -106,7 +106,7 @@ config.send_composed_key_when_left_alt_is_pressed = true
 if not OnUnix() then
     config.initial_rows = 60
     config.initial_cols = 200
-    config.font_size = 12
+    config.font_size = 16
     config.window_background_opacity = 0.85
     config.text_background_opacity = 0.5
 end
