@@ -18,7 +18,8 @@ require("lazy").setup({
 --        priority = 1000,
 --        opts = {},
 --    },
-    { 'projekt0n/github-nvim-theme' },
+--    { 'projekt0n/github-nvim-theme' },
+    { 'monsonjeremy/onedark.nvim'},
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",

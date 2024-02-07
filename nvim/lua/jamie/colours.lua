@@ -3,7 +3,7 @@
 -- })
 
 function ColorMyPencils(color)
-	color = color or "github_dark_high_contrast"
+	color = color or "onedark"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -17,4 +17,4 @@ function ColorMyPencils(color)
 
 end
 
-ColorMyPencils("github_dark_high_contrast")
+ColorMyPencils()
