@@ -104,11 +104,11 @@ config.keys = keys
 config.mouse_bindings = mouse_bindings
 config.send_composed_key_when_left_alt_is_pressed = true
 if not OnUnix() then
-    config.initial_rows = 60
-    config.initial_cols = 200
-    config.font_size = 16
+    config.initial_rows = 50
+    config.initial_cols = 180
+    config.font_size = 14
     config.window_background_opacity = 0.85
-    config.text_background_opacity = 0.5
+    config.text_background_opacity = 1
 end
 
 if OnUnix() then
