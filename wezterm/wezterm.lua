@@ -17,14 +17,6 @@ end
 local keys = {
 	-- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
 	{ key = '8', mods = 'CTRL', action = act.PaneSelect },
-	-- activate pane selection mode with numeric labels
-	{
-		key = '9',
-		mods = 'CTRL',
-		action = act.PaneSelect {
-			alphabet = '1234567890',
-		},
-	},
 	-- show the pane selection mode, but have it swap the active and selected panes
 	{
 		key = '0',
@@ -37,12 +29,12 @@ local keys = {
 	{
 		key = "'",
 		mods = 'CTRL',
-		action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+		action = wezterm.action.SplitHorizontal { domain = 'DefaultDomain' },
 	},
 	{
 		key = ";",
 		mods = 'CTRL',
-		action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+		action = wezterm.action.SplitVertical { domain = 'DefaultDomain' },
 	},
 	{
 		key = '0',
@@ -70,6 +62,7 @@ local keys = {
 		action = act.ActivatePaneDirection 'Down',
 	},
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
+	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'DefaultDomain' },
 }
 
 
@@ -130,4 +123,15 @@ if OnUnix() then
     --    saturation = 1,
     --}
 end
+
+for i = 1, 8 do
+  -- CTRL+ALT + number to activate that tab
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = 'ALT',
+    action = act.ActivateTab(i - 1),
+  })
+end
+-- remove ligatures
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 return config

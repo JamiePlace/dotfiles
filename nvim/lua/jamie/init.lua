@@ -8,6 +8,7 @@ require("jamie.neodev")
 require("jamie.dap")
 require("jamie.dapui")
 require("jamie.cellularautomaton")
+require("jamie.scrollEOF")
 
 
 if vim.fn.has('macunix') == 0 then

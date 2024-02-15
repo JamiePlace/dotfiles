@@ -24,6 +24,7 @@ require("lazy").setup({
                 ensure_installed = {  "lua", "vim", "python", "r", "rust" },
                 sync_install = false,
                 highlight = { enable = true , additional_vim_regex_highlighting = false},
+                indent = { enable = true },
             })
         end
     },
@@ -98,7 +99,20 @@ require("lazy").setup({
         },
         build = ":TSInstall dap-repl"
     },
-    { "folke/neodev.nvim", opts = {} }
+    { "folke/neodev.nvim", opts = {} },
+    -- scrolling past end of file
+    {
+        'Aasim-A/scrollEOF.nvim',
+        event = { 'CursorMoved', 'WinScrolled' },
+        opts = {},
+    },
+    -- markdown
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end,
+    }
 })
 
 
