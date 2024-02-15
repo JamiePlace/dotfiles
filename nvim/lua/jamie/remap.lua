@@ -1,8 +1,5 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
--- return to previous buffer
-vim.keymap.set("t", "<C-a>", "<C-\\><C-n> :b# <CR>", { silent = true })
-vim.keymap.set("n", "<C-a>", ":b# <CR>", { silent = true })
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -53,14 +50,6 @@ vim.keymap.set("n", "<leader>pr", function() require("trouble").toggle("lsp_refe
 -- open terminal
 vim.keymap.set("n", "<leader>rt", ":vsplit<CR><C-w>l:te<CR>")
 vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
-
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-vim.g.copilot_filetypes = {
-	["*"] = false,
-	["rust"] = true,
-	["python"] = true,
-}
 
 -- my repl solution
 vim.keymap.set('n', "<leader>]", "yy<C-w>lp")
