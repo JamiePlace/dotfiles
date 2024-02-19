@@ -2,6 +2,7 @@
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local act = wezterm.action
+local console = wezterm.console
 -- Some empty tables for later use
 local config = {}
 local mouse_bindings = {}
@@ -63,12 +64,41 @@ local keys = {
 	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'DefaultDomain' },
     -- entering copy mode
     { key = 'V', mods = 'CTRL', action = wezterm.action.ActivateCopyMode },
+    -- workspaces
+    {
+        key = 'y',
+        mods = 'CTRL|SHIFT',
+        action = act.SwitchToWorkspace {
+            name = 'default',
+        },
+    },
+    -- Switch to a monitoring workspace, which will have `top` launched into it
+    {
+        key = 'u',
+        mods = 'CTRL|SHIFT',
+        action = act.SwitchToWorkspace {
+            name = 'monitoring',
+            spawn = {
+                args = { 'nvidia-smi' },
+            },
+        },
+    },
+    -- Create a new workspace with a random name and switch to it
+    { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
+    -- Show the launcher in fuzzy selection mode and have it list all workspaces
+    -- and allow activating one.
+    {
+        key = '9',
+        mods = 'ALT',
+        action = act.ShowLauncherArgs {
+            flags = 'FUZZY|WORKSPACES',
+        },
+    },
 }
 
 wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(window:active_workspace())
 end)
-
 if not OnUnix() then
     --- Set Pwsh as the default on Windows
     config.default_prog = { 'powershell', '-NoLogo' }
@@ -99,6 +129,7 @@ config.disable_default_key_bindings = true
 config.keys = keys
 config.mouse_bindings = mouse_bindings
 config.send_composed_key_when_left_alt_is_pressed = true
+config.exit_behavior = 'Hold'
 if not OnUnix() then
     config.initial_rows = 50
     config.initial_cols = 180
