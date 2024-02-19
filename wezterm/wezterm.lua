@@ -15,8 +15,6 @@ function OnUnix()
 end
 
 local keys = {
-	-- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
-	{ key = '8', mods = 'CTRL', action = act.PaneSelect },
 	-- show the pane selection mode, but have it swap the active and selected panes
 	{
 		key = '0',
@@ -63,8 +61,13 @@ local keys = {
 	},
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
 	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'DefaultDomain' },
+    -- entering copy mode
+    { key = 'V', mods = 'CTRL', action = wezterm.action.ActivateCopyMode },
 }
 
+wezterm.on('update-right-status', function(window, pane)
+  window:set_right_status(window:active_workspace())
+end)
 
 if not OnUnix() then
     --- Set Pwsh as the default on Windows
@@ -88,7 +91,7 @@ mouse_bindings = {
 }
 
 --- Default config settings
-config.color_scheme = 'tokyonight-night'
+config.color_scheme = 'tokyonight'
 config.font = wezterm.font('Fira Code')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'BlinkingBar'
