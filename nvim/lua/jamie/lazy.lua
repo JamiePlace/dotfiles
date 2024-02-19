@@ -13,6 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- theme
     {"catppuccin/nvim", name = "catppuccin", priority = 1000},
+    -- git
+    {"tpope/vim-fugitive"},
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -106,15 +108,36 @@ require("lazy").setup({
         event = { 'CursorMoved', 'WinScrolled' },
         opts = {},
     },
-    -- markdown
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
-    },
     -- surround
     {"tpope/vim-surround"},
+    -- obsidian
+    {
+        "epwalsh/obsidian.nvim",
+        lazy = true,
+        ft = "markdown",
+        -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+        -- event = {
+        --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+        --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+        --   "BufReadPre path/to/my-vault/**.md",
+        --   "BufNewFile path/to/my-vault/**.md",
+        -- },
+        dependencies = {
+            -- Required.
+            "nvim-lua/plenary.nvim",
+
+            -- see below for full list of optional dependencies 👇
+        },
+    },
+    -- twilight
+    {
+        "folke/twilight.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    }
 })
 
 
