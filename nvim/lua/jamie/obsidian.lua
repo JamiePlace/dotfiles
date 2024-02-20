@@ -1,13 +1,25 @@
+function OnUnix()
+    if (package.config:sub(1,1)) == ("\\") then
+        return false
+    end
+    return true
+end
+
+if OnUnix() then
+    RootPath = "~"
+else
+    RootPath = "C://Users//jamie"
+end
 require("obsidian").setup(
     {
         workspaces = {
             {
                 name = "personal",
-                path = "C://Users//jamie//notes//personal",
+                path = RootPath .. "//notes//personal",
             },
             {
                 name = "work",
-                path = "C://Users//jamie//notes//work",
+                path = RootPath .. "//notes//work",
             },
         },
         -- Optional, if you keep notes in a specific subdirectory of your vault.
