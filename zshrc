@@ -104,3 +104,6 @@ alias r="radian"
 alias activate="source .venv/bin/activate"
 alias python="python3"
 alias pip="pip3"
+alias cd="z"
+
+eval "$(zoxide init zsh)"
