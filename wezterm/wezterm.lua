@@ -63,7 +63,7 @@ local keys = {
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
 	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'DefaultDomain' },
     -- entering copy mode
-    { key = 'V', mods = 'CTRL', action = wezterm.action.ActivateCopyMode },
+    { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.ActivateCopyMode },
     -- workspaces
     {
         key = 'y',
