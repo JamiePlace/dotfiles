@@ -15,8 +15,6 @@ require("lazy").setup({
     {"catppuccin/nvim", name = "catppuccin", priority = 1000},
     -- git
     {"tpope/vim-fugitive"},
-    -- floating command line
-    {'VonHeikemen/fine-cmdline.nvim', dependencies={'MunifTanjim/nui.nvim'}},
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -139,7 +137,7 @@ require("lazy").setup({
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
         }
-    }
+    },
 })
 
 
