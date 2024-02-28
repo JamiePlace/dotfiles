@@ -27,12 +27,12 @@ local keys = {
 	{
 		key = "'",
 		mods = 'CTRL',
-		action = wezterm.action.SplitHorizontal { domain = 'DefaultDomain' },
+		action = wezterm.action.SplitHorizontal,
 	},
 	{
 		key = ";",
 		mods = 'CTRL',
-		action = wezterm.action.SplitVertical { domain = 'DefaultDomain' },
+		action = wezterm.action.SplitVertical,
 	},
 	{
 		key = '0',
@@ -58,6 +58,26 @@ local keys = {
 		key = 'j',
 		mods = 'CTRL',
 		action = act.ActivatePaneDirection 'Down',
+	},
+	{
+		key = 'h',
+		mods = 'CTRL|SHIFT',
+		action = act.AdjustPaneSize {'Left', 5},
+	},
+	{
+		key = 'l',
+		mods = 'CTRL|SHIFT',
+		action = act.AdjustPaneSize {'Right', 5},
+	},
+	{
+		key = 'k',
+		mods = 'CTRL|SHIFT',
+		action = act.AdjustPaneSize {'Up', 5},
+	},
+	{
+		key = 'j',
+		mods = 'CTRL|SHIFT',
+		action = act.AdjustPaneSize {'Down', 5},
 	},
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
 	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'DefaultDomain' },
