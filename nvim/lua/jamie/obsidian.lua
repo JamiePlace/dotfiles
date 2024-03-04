@@ -17,13 +17,9 @@ require("obsidian").setup(
                 name = "personal",
                 path = RootPath .. "//notes//personal",
             },
-            {
-                name = "work",
-                path = RootPath .. "//notes//work",
-            },
         },
         -- Optional, if you keep notes in a specific subdirectory of your vault.
-        notes_subdir = "001Notes",
+        notes_subdir = "📖 Notes",
 
         -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
         -- levels defined by "vim.log.levels.*".
@@ -31,13 +27,11 @@ require("obsidian").setup(
 
         daily_notes = {
             -- Optional, if you keep daily notes in a separate directory.
-            folder = "001Notes/dailies",
+            folder = "📖 Notes/Daily Notes",
             -- Optional, if you want to change the date format for the ID of daily notes.
             date_format = "%Y-%m-%d",
-            -- Optional, if you want to change the date format of the default alias of daily notes.
-            alias_format = "%B %-d, %Y",
             -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-            template = nil
+            template = "Daily note template"
         },
 
         -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
@@ -59,7 +53,7 @@ require("obsidian").setup(
                 opts = { noremap = false, expr = true, buffer = true },
             },
             -- Toggle check-boxes.
-            ["<leader>ch"] = {
+            ["<leader>>"] = {
                 action = function()
                     return require("obsidian").util.toggle_checkbox()
                 end,
@@ -193,9 +187,9 @@ require("obsidian").setup(
             -- Not all pickers support all mappings.
             mappings = {
                 -- Create a new note from your query.
-                new = "<C-x>",
+                new = "<leader>x",
                 -- Insert a link to the selected note.
-                insert_link = "<C-l>",
+                insert_link = "<leader>l",
             },
         },
 
