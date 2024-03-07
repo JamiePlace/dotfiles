@@ -10,9 +10,11 @@ local launch_menu = {}
 
 function OnUnix()
     if (package.config:sub(1,1)) == ("\\") then
+        print('on unix')
         return false
     end
     return true
+
 end
 
 wezterm.on('update-right-status', function(window, pane)
@@ -59,9 +61,9 @@ end
 
 if OnUnix() then
     config.initial_rows = 48
-    config.initial_cols = 120
+    config.initial_cols = 80
     config.font_size = 16
-    config.window_background_opacity = 0.85
+    config.window_background_opacity = 0.9
     config.text_background_opacity = 1
     --config.window_background_image = "/Users/jamieplace/Pictures/mystic_mountain.png"
     --config.window_background_image_hsb = {

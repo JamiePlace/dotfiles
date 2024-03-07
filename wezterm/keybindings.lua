@@ -66,30 +66,21 @@ local keys = {
 		action = wezterm.action.AdjustPaneSize {'Down', 5},
 	},
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
-	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'DefaultDomain' },
+	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
     -- entering copy mode
     { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.ActivateCopyMode },
     -- workspaces
+    -- Switch to a file explorer workspace using yazi
     {
         key = 'y',
         mods = 'CTRL|SHIFT',
         action = wezterm.action.SwitchToWorkspace {
-            name = 'default',
-        },
-    },
-    -- Switch to a monitoring workspace, which will have `top` launched into it
-    {
-        key = 'u',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.SwitchToWorkspace {
             name = 'monitoring',
             spawn = {
-                args = { 'nvidia-smi' },
+                args = { 'ya()' },
             },
         },
     },
-    -- Create a new workspace with a random name and switch to it
-    { key = 'i', mods = 'CTRL|SHIFT', action = wezterm.action.SwitchToWorkspace },
     -- Show the launcher in fuzzy selection mode and have it list all workspaces
     -- and allow activating one.
     {
