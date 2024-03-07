@@ -88,6 +88,14 @@ else
   export EDITOR='nvim'
 fi
 
+# environment variables
+export APPLE_SSH_ADD_BEHAVIOR="macos"
+
+# set ssh keys
+ssh-add -K ~/.ssh/id_ed25519 > /dev/null 2>&1
+ssh-add -K ~/.ssh/id_rsa > /dev/null 2>&1
+
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -126,3 +134,4 @@ ya() {
 	fi
 	rm -f -- "$tmp"
 }
+
