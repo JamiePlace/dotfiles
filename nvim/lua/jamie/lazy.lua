@@ -138,6 +138,12 @@ require("lazy").setup({
             -- refer to the configuration section below
         }
     },
+    -- docstrings
+    {
+        'kkoomen/vim-doge',
+        build = ':call doge#install()'
+
+    }
 })
 
 

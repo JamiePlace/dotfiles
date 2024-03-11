@@ -54,3 +54,13 @@ vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
 -- my repl solution
 vim.keymap.set('n', "<leader>]", "yy<C-w>lp")
 vim.keymap.set('v', "<leader>]", "y<C-w>lp")
+-- lsp restart
+vim.keymap.set('n', "<leader>lr", ":LspRestart<CR>")
+-- docstrings
+-- Generate comment for current line
+vim.keymap.set('n', '<Leader>d', '<Plug>(doge-generate)')
+
+-- Interactive mode comment todo-jumping
+vim.keymap.set('n', '<TAB>', '<Plug>(doge-comment-jump-forward)')
+vim.keymap.set('n', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
+
