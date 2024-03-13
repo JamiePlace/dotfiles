@@ -5,5 +5,6 @@ vim.g.copilot_filetypes = {
 	["rust"] = true,
 	["python"] = true,
     ["markdown"] = true,
-    ["powershell"] = true
+    ["powershell"] = true,
+    ["bash"] = true,
 }
