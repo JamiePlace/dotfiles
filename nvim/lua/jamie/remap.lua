@@ -60,7 +60,3 @@ vim.keymap.set('n', "<leader>lr", ":LspRestart<CR>")
 -- Generate comment for current line
 vim.keymap.set('n', '<Leader>d', '<Plug>(doge-generate)')
 
--- Interactive mode comment todo-jumping
-vim.keymap.set('n', '<TAB>', '<Plug>(doge-comment-jump-forward)')
-vim.keymap.set('n', '<S-TAB>', '<Plug>(doge-comment-jump-backward)')
-
