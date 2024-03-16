@@ -12,7 +12,32 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- theme
-    {"catppuccin/nvim", name = "catppuccin", priority = 1000},
+    { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 , config = true},
+    -- bar at the bottom
+	{
+		'itchyny/lightline.vim',
+		lazy = false, -- also load at start since it's UI
+		config = function()
+			-- no need to also show mode in cmd line when we have bar
+			vim.o.showmode = false
+			vim.g.lightline = {
+				active = {
+					left = {
+						{ 'mode', 'paste' },
+						{ 'readonly', 'filename', 'modified' }
+					},
+					right = {
+						{ 'lineinfo' },
+						{ 'percent' },
+						{ 'fileencoding', 'filetype' }
+					},
+				},
+				component_function = {
+					filename = 'LightlineFilename'
+				},
+			}
+		end
+	},
     -- git
     {"tpope/vim-fugitive"},
     -- treesitter
@@ -143,7 +168,7 @@ require("lazy").setup({
         'kkoomen/vim-doge',
         build = ':call doge#install()'
 
-    }
+    },
 })
 
 

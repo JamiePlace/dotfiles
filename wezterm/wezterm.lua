@@ -42,8 +42,8 @@ mouse_bindings = {
 }
 
 --- Default config settings
-config.color_scheme = 'tokyonight'
-config.font = wezterm.font('Fira Code')
+config.color_scheme = 'Gruvbox Dark (Gogh)'
+config.font = wezterm.font('JetBrains Mono')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'BlinkingBar'
 config.disable_default_key_bindings = true
@@ -55,7 +55,7 @@ if not OnUnix() then
     config.initial_rows = 50
     config.initial_cols = 180
     config.font_size = 14
-    config.window_background_opacity = 0.85
+    config.window_background_opacity = 1
     config.text_background_opacity = 1
 end
 
