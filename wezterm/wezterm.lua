@@ -17,9 +17,41 @@ function OnUnix()
 
 end
 
+local process_icons = {
+  ['docker'] = wezterm.nerdfonts.linux_docker,
+  ['docker-compose'] = wezterm.nerdfonts.linux_docker,
+  ['psql'] = '󱤢',
+  ['usql'] = '󱤢',
+  ['kuberlr'] = wezterm.nerdfonts.linux_docker,
+  ['ssh'] = wezterm.nerdfonts.fa_exchange,
+  ['ssh-add'] = wezterm.nerdfonts.fa_exchange,
+  ['kubectl'] = wezterm.nerdfonts.linux_docker,
+  ['stern'] = wezterm.nerdfonts.linux_docker,
+  ['nvim'] = wezterm.nerdfonts.custom_vim,
+  ['make'] = wezterm.nerdfonts.seti_makefile,
+  ['vim'] = wezterm.nerdfonts.dev_vim,
+  ['node'] = wezterm.nerdfonts.mdi_hexagon,
+  ['go'] = wezterm.nerdfonts.seti_go,
+  ['python3'] = '',
+  ['zsh'] = wezterm.nerdfonts.dev_terminal,
+  ['bash'] = wezterm.nerdfonts.cod_terminal_bash,
+  ['btm'] = wezterm.nerdfonts.mdi_chart_donut_variant,
+  ['htop'] = wezterm.nerdfonts.mdi_chart_donut_variant,
+  ['cargo'] = wezterm.nerdfonts.dev_rust,
+  ['sudo'] = wezterm.nerdfonts.fa_hashtag,
+  ['lazydocker'] = wezterm.nerdfonts.linux_docker,
+  ['git'] = wezterm.nerdfonts.dev_git,
+  ['lua'] = wezterm.nerdfonts.seti_lua,
+  ['wget'] = wezterm.nerdfonts.mdi_arrow_down_box,
+  ['curl'] = wezterm.nerdfonts.mdi_flattr,
+  ['gh'] = wezterm.nerdfonts.dev_github_badge,
+  ['ruby'] = wezterm.nerdfonts.cod_ruby,
+}
+
 wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(window:active_workspace())
 end)
+
 if not OnUnix() then
     --- Set Pwsh as the default on Windows
     config.default_prog = { 'powershell', '-NoLogo' }

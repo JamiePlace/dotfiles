@@ -36,6 +36,22 @@ require("lazy").setup({
 					filename = 'LightlineFilename'
 				},
 			}
+            function LightlineFilenameInLua(opts)
+                            if vim.fn.expand('%:t') == '' then
+                                return '[No Name]'
+                            else
+                                return vim.fn.getreg('%')
+                            end
+                        end
+                        -- https://github.com/itchyny/lightline.vim/issues/657
+                        vim.api.nvim_exec(
+                            [[
+                            function! g:LightlineFilename()
+                                return v:lua.LightlineFilenameInLua()
+                            endfunction
+                            ]],
+                            true
+                        )
 		end
 	},
     -- git
