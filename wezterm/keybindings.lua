@@ -66,7 +66,7 @@ local keys = {
 		action = wezterm.action.AdjustPaneSize {'Down', 5},
 	},
 	{ key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
-	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'DefaultDomain' },
+	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
     -- entering copy mode
     { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.ActivateCopyMode },
     -- workspaces

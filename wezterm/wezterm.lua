@@ -52,6 +52,28 @@ wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(window:active_workspace())
 end)
 
+function Basename(s)
+  return string.gsub(s, '(.*[/\\])(.*)', '%2')
+end
+
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local pane = tab.active_pane
+    local title = Basename(pane.foreground_process_name)
+      .. ' '
+      .. pane.pane_id
+    local color = 'None'
+    if tab.is_active then
+      color = '#B25400'
+    end
+    return {
+      { Background = { Color = color } },
+      { Text = ' ' .. title .. ' ' },
+    }
+  end
+)
+
 if not OnUnix() then
     --- Set Pwsh as the default on Windows
     config.default_prog = { 'powershell', '-NoLogo' }
