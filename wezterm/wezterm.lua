@@ -119,6 +119,7 @@ if OnUnix() then
     config.font_size = 16
     config.window_background_opacity = 1
     config.text_background_opacity = 1
+
     --config.window_background_image = "/Users/jamieplace/Pictures/mystic_mountain.png"
     --config.window_background_image_hsb = {
     --    -- Darken the background image by reducing it to 1/3rd
