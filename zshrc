@@ -48,6 +48,7 @@ alias activate="source .venv/bin/activate"
 alias python="python3"
 alias pip="pip3"
 alias cd="z"
+alias ls="eza"
 
 eval "$(zoxide init zsh)"
 # lazy git alias
