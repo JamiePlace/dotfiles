@@ -79,5 +79,7 @@ local keys = {
         },
     },
     { key = 'p', mods = 'ALT', action = wezterm.action.PasteFrom 'Clipboard' },
+    { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
+    { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
 }
 return keys

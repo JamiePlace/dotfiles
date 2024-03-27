@@ -52,10 +52,12 @@ vim.keymap.set("n", "<leader>rt", ":vsplit<CR><C-w>l:te<CR>")
 vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
 
 -- my repl solution
-vim.keymap.set('n', "<leader>]", "yy<C-w>lp")
-vim.keymap.set('v', "<leader>]", "y<C-w>lp")
+vim.keymap.set("n", "<leader>rp", ":vsplit<CR><C-w>l:terminal ipython<CR>")
+vim.keymap.set('n', "<leader>]", "yy<C-w>lpa<CR>")
+vim.keymap.set('v', "<leader>]", "y<C-w>lpa<CR>")
 -- lsp restart
 vim.keymap.set('n', "<leader>lr", ":LspRestart<CR>")
 -- docstrings
 -- Generate comment for current line
 vim.keymap.set('n', '<Leader>d', '<Plug>(doge-generate)')
+
