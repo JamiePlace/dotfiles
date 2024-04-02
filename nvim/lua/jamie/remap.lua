@@ -52,9 +52,11 @@ vim.keymap.set("n", "<leader>rt", ":vsplit<CR><C-w>l:te<CR>")
 vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
 
 -- my repl solution
-vim.keymap.set("n", "<leader>rp", ":vsplit<CR><C-w>l:terminal ipython<CR>")
-vim.keymap.set('n', "<leader>]", "yy<C-w>lpa<CR>")
-vim.keymap.set('v', "<leader>]", "y<C-w>lpa<CR>")
+-- could do this better where I look for the ptpython buffer and then
+-- move text from the current buffer to the ptpython buffer
+vim.keymap.set("n", "<leader>rp", ":vsplit<CR><C-w>l:terminal ptpython<CR>")
+vim.keymap.set('n', "<leader>]", "yy<C-w>lpa<CR><CR>")
+vim.keymap.set('v', "<leader>]", "y<C-w>lpa<CR><CR>")
 -- lsp restart
 vim.keymap.set('n', "<leader>lr", ":LspRestart<CR>")
 -- docstrings

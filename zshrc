@@ -3,6 +3,9 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+# Path to xdg_config_home
+#export XDG_CONFIG_HOME="$Home/.config/"
+export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython/"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -50,6 +53,7 @@ alias pip="pip3"
 alias cd="z"
 alias ls="eza"
 alias csv="csvlens"
+#alias ptpython="ptpython --config-file $PTPYTHON_CONFIG_HOME"
 
 eval "$(zoxide init zsh)"
 # lazy git alias
