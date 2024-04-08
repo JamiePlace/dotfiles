@@ -1,0 +1,36 @@
+{
+    "initial_working_directory": "~",
+    "editor_theme": "Ambiance",
+    "posix_terminal_shell": "bash",
+    "panes": {
+        "quadrants": [
+            "Source",
+            "TabSet2",
+            "TabSet1",
+            "Console"
+        ],
+        "tabSet1": [
+            "Environment",
+            "History",
+            "Files",
+            "Plots",
+            "Connections",
+            "Packages",
+            "Build",
+            "VCS",
+            "Tutorial",
+            "Viewer",
+            "Presentation"
+        ],
+        "tabSet2": [
+            "Help",
+            "Presentations"
+        ],
+        "hiddenTabSet": [
+            "Presentations"
+        ],
+        "console_left_on_top": false,
+        "console_right_on_top": false,
+        "additional_source_columns": 0
+    }
+}
