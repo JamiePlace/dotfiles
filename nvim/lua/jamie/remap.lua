@@ -65,7 +65,7 @@ vim.keymap.set('v', "<leader>]", "y<C-w>lpa<CR><CR>")
 vim.keymap.set('n', "<leader>lr", ":LspRestart<CR>")
 -- docstrings
 -- Generate comment for current line
-vim.keymap.set('n', '<Leader>d', '<Plug>(doge-generate)')
+vim.keymap.set('n', '<Leader>ds', '<Plug>(doge-generate)')
 -- TODO comments
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
 
