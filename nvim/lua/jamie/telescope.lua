@@ -16,7 +16,6 @@ telescope.setup {
 }
 function OnUnix()
     if (package.config:sub(1,1)) == ("\\") then
-        print('on unix')
         return false
     end
     return true
