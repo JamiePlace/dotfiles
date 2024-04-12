@@ -96,7 +96,7 @@ mouse_bindings = {
 }
 
 --- Default config settings
-config.color_scheme = 'Gruvbox Dark (Gogh)'
+config.color_scheme ='Vs Code Dark+ (Gogh)'
 config.font = wezterm.font('JetBrains Mono')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'BlinkingBar'

@@ -12,7 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- theme
-    { "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 , config = true},
+    --{ "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 , config = true},
+    -- theme
+    { "martinsione/darkplus.nvim", lazy = false, priority = 1000},
     -- bar at the bottom
 	{
 		'itchyny/lightline.vim',
@@ -103,7 +105,8 @@ require("lazy").setup({
         -- or                              , branch = '0.1.x',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
-    --{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
+    -- fzf telescope
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     -- autopairs
     {
         "windwp/nvim-autopairs", event="InsertEnter", opts = {},
@@ -147,15 +150,7 @@ require("lazy").setup({
         },
     },
     -- dap
-    {
-        "rcarriga/nvim-dap-ui",
-        dependencies = {
-            "mfussenegger/nvim-dap",
-            'mfussenegger/nvim-dap-python',
-            "LiadOz/nvim-dap-repl-highlights"
-        },
-        build = ":TSInstall dap-repl"
-    },
+    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", "nvim-neotest/nvim-nio", "LiadOz/nvim-dap-repl-highlights"} },
     { "folke/neodev.nvim", opts = {} },
     -- scrolling past end of file
     {
