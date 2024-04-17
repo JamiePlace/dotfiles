@@ -14,48 +14,13 @@ require("lazy").setup({
     -- theme
     --{ "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 , config = true},
     -- theme
-    { "martinsione/darkplus.nvim", lazy = false, priority = 1000},
+    --{ "martinsione/darkplus.nvim", lazy = false, priority = 1000},
+    {'Mofiqul/vscode.nvim', lazy = false, priority = 1000},
     -- bar at the bottom
-	{
-		'itchyny/lightline.vim',
-		lazy = false, -- also load at start since it's UI
-		config = function()
-			-- no need to also show mode in cmd line when we have bar
-			vim.o.showmode = false
-			vim.g.lightline = {
-				active = {
-					left = {
-						{ 'mode', 'paste' },
-						{ 'readonly', 'filename', 'modified' }
-					},
-					right = {
-						{ 'lineinfo' },
-						{ 'percent' },
-						{ 'fileencoding', 'filetype' }
-					},
-				},
-				component_function = {
-					filename = 'LightlineFilename'
-				},
-			}
-            function LightlineFilenameInLua(opts)
-                            if vim.fn.expand('%:t') == '' then
-                                return '[No Name]'
-                            else
-                                return vim.fn.getreg('%')
-                            end
-                        end
-                        -- https://github.com/itchyny/lightline.vim/issues/657
-                        vim.api.nvim_exec(
-                            [[
-                            function! g:LightlineFilename()
-                                return v:lua.LightlineFilenameInLua()
-                            endfunction
-                            ]],
-                            true
-                        )
-		end
-	},
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
     -- git
     {"tpope/vim-fugitive"},
     -- treesitter
