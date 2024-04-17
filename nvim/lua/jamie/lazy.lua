@@ -12,9 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- theme
-    --{ "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 , config = true},
-    -- theme
-    --{ "martinsione/darkplus.nvim", lazy = false, priority = 1000},
     {'Mofiqul/vscode.nvim', lazy = false, priority = 1000},
     -- bar at the bottom
     {
