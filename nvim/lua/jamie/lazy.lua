@@ -138,6 +138,8 @@ require("lazy").setup({
         -- refer to the configuration section below
       }
     },
+    -- better escape
+    {"max397574/better-escape.nvim"}
 })
 
 
