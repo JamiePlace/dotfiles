@@ -1,9 +1,16 @@
 lastupdatecheck: 0
 recentrepos:
+- C:\Users\jamie\projects\Woolie
 - C:\Users\jamie\projects\codecrafters-grep-python
 - C:\Users\jamie\.config
 - C:\Users\jamie\projects\AdventOfCode-23
 startuppopupversion: 5
+lastversion: 0.41.0
 customcommandshistory: []
 hidecommandlog: false
 ignorewhitespaceindiffview: false
+diffcontextsize: 3
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always

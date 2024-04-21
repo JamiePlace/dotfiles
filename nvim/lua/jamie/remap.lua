@@ -35,7 +35,8 @@ vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 -- jump to previous buffer
-vim.keymap.set("n", "<leader>ll", "<C-6>")
+vim.keymap.set("n", "<leader>ll", ":b#<CR>")
+vim.keymap.set({"n","i"}, "<C-l>", function() vim.cmd(":b#") end)
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', function() builtin.find_files({path_display = { "truncate" }}) end, {})
