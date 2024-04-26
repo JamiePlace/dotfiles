@@ -27,22 +27,22 @@ local keys = {
 	},
 	{
 		key = 'h',
-		mods = 'ALT',
+		mods = 'CTRL|SHIFT',
 		action = wezterm.action.ActivatePaneDirection 'Left',
 	},
 	{
 		key = 'l',
-		mods = 'ALT',
+		mods = 'CTRL|SHIFT',
 		action = wezterm.action.ActivatePaneDirection 'Right',
 	},
 	{
 		key = 'k',
-		mods = 'ALT',
+		mods = 'CTRL|SHIFT',
 		action = wezterm.action.ActivatePaneDirection 'Up',
 	},
 	{
 		key = 'j',
-		mods = 'ALT',
+		mods = 'CTRL|SHIFT',
 		action = wezterm.action.ActivatePaneDirection 'Down',
 	},
 	{
