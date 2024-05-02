@@ -1,14 +1,6 @@
 local wezterm = require 'wezterm'
 
 local keys = {
-	-- show the pane selection mode, but have it swap the active and selected panes
-	{
-		key = '0',
-		mods = 'CTRL',
-		action = wezterm.action.PaneSelect {
-			mode = 'SwapWithActive',
-		},
-	},
 	-- This will create a new split and run your default program inside it
 	{
 		key = "'",
@@ -27,22 +19,22 @@ local keys = {
 	},
 	{
 		key = 'h',
-		mods = 'ALT',
+		mods = 'CTRL|SHIFT',
 		action = wezterm.action.ActivatePaneDirection 'Left',
 	},
 	{
 		key = 'l',
-		mods = 'ALT',
+		mods = 'CTRL|SHIFT',
 		action = wezterm.action.ActivatePaneDirection 'Right',
 	},
 	{
 		key = 'k',
-		mods = 'ALT',
+		mods = 'CTRL|SHIFT',
 		action = wezterm.action.ActivatePaneDirection 'Up',
 	},
 	{
 		key = 'j',
-		mods = 'ALT',
+		mods = 'CTRL|SHIFT',
 		action = wezterm.action.ActivatePaneDirection 'Down',
 	},
 	{

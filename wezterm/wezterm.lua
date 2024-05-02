@@ -95,7 +95,9 @@ mouse_bindings = {
 }
 
 --- Default config settings
-config.color_scheme ='Vs Code Dark+ (Gogh)'
+--config.color_scheme ='Catppuccin Latte (Gogh)'
+config.color_scheme ='Catppuccin Mocha (Gogh)'
+--config.color_scheme ='Vs Code Dark+ (Gogh)'
 config.font = wezterm.font('JetBrains Mono')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'BlinkingBar'
