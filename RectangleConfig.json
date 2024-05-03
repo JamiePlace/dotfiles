@@ -65,7 +65,7 @@
       "int" : 1
     },
     "footprintAlpha" : {
-      "float" : 0.30000001192092896
+      "float" : 0.3
     },
     "footprintAnimationDurationMultiplier" : {
       "float" : 0
@@ -227,51 +227,51 @@
   "shortcuts" : {
     "bottomHalf" : {
       "keyCode" : 38,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "bottomLeft" : {
       "keyCode" : 45,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "bottomRight" : {
       "keyCode" : 46,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "center" : {
       "keyCode" : 8,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "centerThird" : {
       "keyCode" : 3,
-      "modifierFlags" : 786432
+      "modifierFlags" : 1179648
     },
     "firstThird" : {
       "keyCode" : 2,
-      "modifierFlags" : 786432
+      "modifierFlags" : 1179648
     },
     "firstTwoThirds" : {
       "keyCode" : 14,
-      "modifierFlags" : 786432
+      "modifierFlags" : 1179648
     },
     "larger" : {
       "keyCode" : 24,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "lastThird" : {
       "keyCode" : 5,
-      "modifierFlags" : 786432
+      "modifierFlags" : 1179648
     },
     "lastTwoThirds" : {
       "keyCode" : 17,
-      "modifierFlags" : 786432
+      "modifierFlags" : 1179648
     },
     "leftHalf" : {
       "keyCode" : 4,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "maximize" : {
       "keyCode" : 36,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "maximizeHeight" : {
       "keyCode" : 126,
@@ -279,11 +279,11 @@
     },
     "nextDisplay" : {
       "keyCode" : 37,
-      "modifierFlags" : 1703936
+      "modifierFlags" : 1441792
     },
     "previousDisplay" : {
       "keyCode" : 4,
-      "modifierFlags" : 1703936
+      "modifierFlags" : 1441792
     },
     "reflowTodo" : {
       "keyCode" : 45,
@@ -291,15 +291,15 @@
     },
     "restore" : {
       "keyCode" : 51,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "rightHalf" : {
       "keyCode" : 37,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "smaller" : {
       "keyCode" : 27,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "toggleTodo" : {
       "keyCode" : 11,
@@ -307,15 +307,15 @@
     },
     "topHalf" : {
       "keyCode" : 40,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "topLeft" : {
       "keyCode" : 32,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     },
     "topRight" : {
       "keyCode" : 34,
-      "modifierFlags" : 655360
+      "modifierFlags" : 1179648
     }
   },
   "version" : "82"
