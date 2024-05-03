@@ -55,6 +55,7 @@ alias pip="pip3"
 alias cd="z"
 alias ls="eza"
 alias csv="csvlens"
+alias light="lua $HOME/.config/tools/light_mode.lua"
 #alias ptpython="ptpython --config-file $PTPYTHON_CONFIG_HOME"
 
 eval "$(zoxide init zsh)"
