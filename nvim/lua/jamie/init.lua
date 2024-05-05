@@ -12,6 +12,8 @@ require("jamie.scrollEOF")
 require("jamie.fzf_telescope")
 require("jamie.lualine")
 require("jamie.better_escape")
+require("jamie.oil")
+
 
 if vim.fn.has('macunix') == 0 then
     vim.cmd([[
