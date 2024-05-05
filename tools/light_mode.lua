@@ -23,7 +23,7 @@ local remove_comment
 ---@param line string
 ---@return string
 function remove_comment(line)
-    return string.gsub(line, "^%-%-", "")
+    return string.gsub(line, "^%-%-", "")[1]
 end
 
 local add_comment
@@ -59,10 +59,10 @@ function nvim_colour()
     nvim_mode[2] = line2
 
     local file = io.open(file_path, "w")
-    for k, v in pairs(nvim_mode) do
-        file:write(v .. "\n")
+    for _, v in pairs(nvim_mode) do
+        if file ~= nil then file:write(v .. "\n") end
     end
-    file:close()
+    if file ~= nil then file:close() end
 end
 
 local wezterm_colour
@@ -91,10 +91,10 @@ function wezterm_colour()
     wezterm_mode[11] = line2
 
     local file = io.open(file_path, "w")
-    for k, v in pairs(wezterm_mode) do
-        file:write(v .. "\n")
+    for _, v in pairs(wezterm_mode) do
+        if file ~= nil then file:write(v .. "\n") end
     end
-    file:close()
+    if file ~= nil then file:close() end
 end
 
 local main
