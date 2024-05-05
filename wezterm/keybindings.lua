@@ -1,5 +1,4 @@
 local wezterm = require 'wezterm'
-
 local keys = {
 	-- This will create a new split and run your default program inside it
 	{
