@@ -142,7 +142,9 @@ require("lazy").setup({
       }
     },
     -- better escape
-    {"max397574/better-escape.nvim"}
+    {"max397574/better-escape.nvim"},
+    -- oil
+    {"stevearc/oil.nvim"}
 })
 
 
