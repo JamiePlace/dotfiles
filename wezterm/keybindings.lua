@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 local keys = {
 	-- This will create a new split and run your default program inside it
 	{
@@ -69,8 +70,34 @@ local keys = {
             flags = 'FUZZY|WORKSPACES',
         },
     },
+    { key = 'q', mods = 'ALT', action = wezterm.action.QuitApplication },
     { key = 'p', mods = 'ALT', action = wezterm.action.PasteFrom 'Clipboard' },
     { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
     { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
+    -- Prompt for a name to use for a new workspace and switch to it.
+    {
+        key = 'W',
+        mods = 'CTRL|SHIFT',
+        action = act.PromptInputLine {
+            description = wezterm.format {
+                { Attribute = { Intensity = 'Bold' } },
+                { Foreground = { AnsiColor = 'Fuchsia' } },
+                { Text = 'Enter name for new workspace' },
+            },
+            action = wezterm.action_callback(function(window, pane, line)
+                -- line will be `nil` if they hit escape without entering anything
+                -- An empty string if they just hit enter
+                -- Or the actual line of text they wrote
+                if line then
+                    window:perform_action(
+                    act.SwitchToWorkspace {
+                        name = line,
+                    },
+                    pane
+                    )
+                end
+            end),
+        },
+    },
 }
 return keys

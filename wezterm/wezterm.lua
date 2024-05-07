@@ -7,8 +7,8 @@ local keys = require 'keybindings'
 local config = {}
 local mouse_bindings = {}
 local launch_menu = {}
---config.color_scheme ='Catppuccin Mocha (Gogh)'
-config.color_scheme ='Catppuccin Latte (Gogh)'
+config.color_scheme ='Catppuccin Mocha (Gogh)'
+--config.color_scheme ='Catppuccin Latte (Gogh)'
 
 function OnUnix()
     if (package.config:sub(1,1)) == ("\\") then
@@ -53,28 +53,6 @@ wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(window:active_workspace())
 end)
 
-function Basename(s)
-  return string.gsub(s, '(.*[/\\])(.*)', '%2')
-end
-
-wezterm.on(
-  'format-tab-title',
-  function(tab, tabs, panes, config, hover, max_width)
-    local pane = tab.active_pane
-    local title = Basename(pane.foreground_process_name)
-      .. ' '
-      .. pane.pane_id
-    local color = 'None'
-    if tab.is_active then
-      color = '#B25400'
-    end
-    return {
-      { Background = { Color = color } },
-      { Text = ' ' .. title .. ' ' },
-    }
-  end
-)
-
 if not OnUnix() then
     --- Set Pwsh as the default on Windows
     config.default_prog = { 'powershell', '-NoLogo' }
@@ -99,7 +77,7 @@ mouse_bindings = {
 --- Default config settings
 config.font = wezterm.font('JetBrains Mono')
 config.launch_menu = launch_menu
-config.default_cursor_style = 'BlinkingBar'
+config.default_cursor_style = 'SteadyUnderline'
 config.disable_default_key_bindings = true
 config.keys = keys
 config.mouse_bindings = mouse_bindings
@@ -144,4 +122,16 @@ for i = 1, 8 do
 end
 -- remove ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+
+config.unix_domains = {
+  {
+    name = 'unix',
+  },
+}
+
+-- This causes `wezterm` to act as though it was started as
+-- `wezterm connect unix` by default, connecting to the unix
+-- domain on startup.
+-- If you prefer to connect manually, leave out this line.
+config.default_gui_startup_args = { 'connect', 'unix' }
 return config
