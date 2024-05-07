@@ -16,14 +16,15 @@ local is_lua_comment
 ---@param line string
 ---@return boolean
 function is_lua_comment(line)
-    return string.find(line, "^%-%-") == nil
+    local start, _ = string.find(line, "^%-%-")
+    return start ~= nil
 end
 
 local remove_comment
 ---@param line string
 ---@return string
 function remove_comment(line)
-    return string.gsub(line, "^%-%-", "")[1]
+    return line:sub(3)
 end
 
 local add_comment
@@ -42,7 +43,7 @@ function nvim_colour()
     -- print all line numbers and their contents
     local light
     local dark
-    light, dark = is_lua_comment(nvim_mode[1]), is_lua_comment( nvim_mode[2] )
+    light, dark = not is_lua_comment(nvim_mode[1]), not is_lua_comment( nvim_mode[2] )
 
     local line1
     local line2
@@ -74,7 +75,7 @@ function wezterm_colour()
     -- print all line numbers and their contents
     local light
     local dark
-    light, dark = is_lua_comment(wezterm_mode[10]), is_lua_comment( wezterm_mode[11] )
+    light, dark = not is_lua_comment(wezterm_mode[10]), not is_lua_comment( wezterm_mode[11] )
 
     local line1
     local line2
