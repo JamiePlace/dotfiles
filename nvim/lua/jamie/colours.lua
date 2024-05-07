@@ -1,5 +1,5 @@
-vim.o.background = "light"
---vim.o.background = "dark"
+--vim.o.background = "light"
+vim.o.background = "dark"
 --require("vscode").setup({})
 function ColorMyPencils()
     --vim.cmd([[colorscheme gruvbox]])
