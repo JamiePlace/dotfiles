@@ -83,6 +83,7 @@ config.keys = keys
 config.mouse_bindings = mouse_bindings
 config.send_composed_key_when_left_alt_is_pressed = true
 config.exit_behavior = 'Hold'
+config.window_decorations = 'RESIZE'
 if not OnUnix() then
     config.initial_rows = 50
     config.initial_cols = 180
