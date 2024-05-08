@@ -50,7 +50,7 @@ local process_icons = {
 }
 
 wezterm.on('update-right-status', function(window, pane)
-  window:set_right_status(window:active_workspace())
+  window:set_right_status(window:active_workspace() .. "   ")
 end)
 
 if not OnUnix() then
