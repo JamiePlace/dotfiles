@@ -15,7 +15,7 @@ local keys = {
 	{
 		key = '0',
 		mods = 'CTRL',
-		action = wezterm.action.CloseCurrentPane { confirm = true },
+		action = wezterm.action.CloseCurrentPane { confirm = false },
 	},
 	{
 		key = 'h',

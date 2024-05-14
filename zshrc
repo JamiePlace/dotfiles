@@ -56,7 +56,7 @@ alias cd="z"
 alias ls="eza"
 alias csv="csvlens"
 alias light="lua $HOME/.config/tools/light_mode.lua"
-alias gclean="git branch -v|grep \\[gone\\]|awk '{print $1}'|xargs -I{} git branch -D {}"
+alias gclean="git branch -v|grep \[gone\]|awk '{print $1}'|xargs -I{} git branch -D {}"
 #alias ptpython="ptpython --config-file $PTPYTHON_CONFIG_HOME"
 
 eval "$(zoxide init zsh)"
