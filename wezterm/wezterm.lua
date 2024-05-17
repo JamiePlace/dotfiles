@@ -3,6 +3,7 @@ local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local act = wezterm.action
 local keys = require 'keybindings'
+local workspaces = require 'workspaces'
 -- Some empty tables for later use
 local config = {}
 local mouse_bindings = {}
@@ -126,7 +127,16 @@ config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 config.unix_domains = {
   {
-    name = 'unix',
+    name = 'config',
+    proxy_command = {
+        "cd $HOME/.config/",
+    },
+  },
+  {
+    name = 'lure',
+    proxy_command = {
+        "cd $HOME/projects/auto-lure-generation",
+    },
   },
 }
 
@@ -134,5 +144,5 @@ config.unix_domains = {
 -- `wezterm connect unix` by default, connecting to the unix
 -- domain on startup.
 -- If you prefer to connect manually, leave out this line.
-config.default_gui_startup_args = { 'connect', 'unix' }
+--config.default_gui_startup_args = { 'connect', 'config' }
 return config

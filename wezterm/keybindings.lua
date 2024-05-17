@@ -74,6 +74,8 @@ local keys = {
     { key = 'p', mods = 'ALT', action = wezterm.action.PasteFrom 'Clipboard' },
     { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
     { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
+    { key = ']', mods = 'ALT', action = act.SwitchWorkspaceRelative(1) },
+    { key = '[', mods = 'ALT', action = act.SwitchWorkspaceRelative(-1) },
     -- Prompt for a name to use for a new workspace and switch to it.
     {
         key = 'W',
