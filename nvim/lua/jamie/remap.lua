@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 --vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- W to w
+vim.keymap.set("n", ",", ";")
 vim.keymap.set("n", ";", ":")
 
 vim.keymap.set("n", "J", "mzJ`z")
@@ -59,7 +59,7 @@ vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
 -- my repl solution
 -- could do this better where I look for the ptpython buffer and then
 -- move text from the current buffer to the ptpython buffer
-vim.keymap.set("n", "<leader>rp", ":vsplit<CR><C-w>l:terminal ptpython<CR>")
+vim.keymap.set("n", "<leader>rp", ":vsplit<CR><C-w>l:terminal ptipython<CR>")
 vim.keymap.set('n', "<leader>]", "yy<C-w>lpa<CR><CR>")
 vim.keymap.set('v', "<leader>]", "y<C-w>lpa<CR><CR>")
 -- lsp restart
