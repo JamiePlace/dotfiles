@@ -73,7 +73,7 @@ require('lspconfig').pyright.setup {
         python = {
             analysis = {
                 autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly",
+                diagnosticMode = "off",
                 useLibraryCodeForTypes = true
             }
         }
@@ -91,5 +91,3 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
-
-

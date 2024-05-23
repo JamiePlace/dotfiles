@@ -13,6 +13,7 @@ require("jamie.fzf_telescope")
 require("jamie.lualine")
 require("jamie.better_escape")
 require("jamie.oil")
+require("jamie.neotest")
 
 
 if vim.fn.has('macunix') == 0 then

@@ -29,7 +29,7 @@ require("lazy").setup({
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
-                ensure_installed = {  "lua", "vim", "python", "rust", "bash", "json", "toml"},
+                ensure_installed = {  "lua", "vim", "python", "rust", "bash", "json", "toml", "vimdoc"},
                 ignore_install = {"yaml"},
                 sync_install = false,
                 highlight = { enable = true , additional_vim_regex_highlighting = false},
@@ -144,7 +144,18 @@ require("lazy").setup({
     -- better escape
     {"max397574/better-escape.nvim"},
     -- oil
-    {"stevearc/oil.nvim"}
+    {"stevearc/oil.nvim"},
+    -- neotest
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-neotest/neotest-python",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter"
+        }
+    }
 })
 
 
