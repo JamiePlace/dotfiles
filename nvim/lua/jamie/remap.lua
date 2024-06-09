@@ -31,13 +31,12 @@ vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 vim.keymap.set("i", "<C-c>", "<Esc>")
 -- resize with arrows
-vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { silent = true })
-vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { silent = true })
-vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
-vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-k>", ":resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-j>", ":resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-h>", ":vertical resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-l>", ":vertical resize +2<CR>", { silent = true })
 -- jump to previous buffer
-vim.keymap.set("n", "<leader>ll", ":b#<CR>")
-vim.keymap.set({"n","i"}, "<C-l>", function() vim.cmd(":b#") end)
+vim.keymap.set("n", "<leader>ll", ":b#<CR>", { silent = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', function() builtin.find_files({path_display = { "truncate" }}) end, {})
@@ -69,5 +68,6 @@ vim.keymap.set('n', "<leader>lr", ":LspRestart<CR>")
 vim.keymap.set('n', '<Leader>ds', '<Plug>(doge-generate)')
 -- TODO comments
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
-
 vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
+vim.keymap.set("n", "<leader>tt", function() vim.cmd(":TodoTrouble") end, { desc = "All todos in project" })
+
