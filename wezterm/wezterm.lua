@@ -1,9 +1,9 @@
+require 'workspaces'
 -- The only required line is this one.
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local act = wezterm.action
 local keys = require 'keybindings'
-local workspaces = require 'workspaces'
 -- Some empty tables for later use
 local config = {}
 local mouse_bindings = {}

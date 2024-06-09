@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
+local proj_workspaces = require 'project_workspaces'
 
+local
 function default()
     local tab, build_pane, window = mux.spawn_window {
         workspace = 'home',
@@ -9,6 +11,7 @@ function default()
 end
 
 
+local
 function projects()
     local project_dir = wezterm.home_dir .. "/projects/"
     local tab, build_pane, window = mux.spawn_window {
@@ -17,6 +20,7 @@ function projects()
     }
 end
 
+local
 function config()
     local project_dir = wezterm.home_dir .. "/.config/"
     local tab, build_pane, window = mux.spawn_window {
@@ -27,28 +31,19 @@ function config()
     build_pane:send_text 'git pull\n'
 end
 
-function project_workspace(name, dir)
-    local project_dir = wezterm.home_dir .. "/projects/" .. dir
-    local tab, build_pane, window = mux.spawn_window {
-        workspace = name,
-        cwd = project_dir,
-    }
-    local editor_pane = build_pane:split {
-        direction = 'Top',
-        size = 0.9,
-        cwd = project_dir,
-    }
-    local git_pane = editor_pane:split {
-        direction = 'Left',
-        size = 0.1,
-        cwd = project_dir,
-    }
-    -- may as well kick off a build in that pane
-    editor_pane:send_text 'activate\nnvim .\nclear\n'
-    build_pane:send_text 'activate\nclear\n'
-    git_pane:send_text 'activate\ngit status\n'
+local
+function home_computer()
+    local directory = os.getenv("HOME")
+    local i, t, popen = 0, {}, io.popen
+    local pfile = popen('ls -a "'..directory..'"')
+    for filename in pfile:lines() do
+        if filename == "myprojects" then
+            return true
+        end
+    end
+    pfile:close()
+    return false
 end
-
 
 wezterm.on('gui-startup', function(cmd)
 
@@ -59,12 +54,12 @@ wezterm.on('gui-startup', function(cmd)
     -- config
     config()
 
-    -- phishing-detection
-    project_workspace('phishing-detection', 'phishing-detection')
-    -- autolure
-    project_workspace('autolure', 'auto-lure-generation')
-    -- titanhq-analytics
-    project_workspace('titanhq-analytics', 'titanhq-analytics')
+    if home_computer() then
+        proj_workspaces.home()
+    else
+        proj_workspaces.work()
+    end
+
 
     mux.set_active_workspace 'home'
 end)
