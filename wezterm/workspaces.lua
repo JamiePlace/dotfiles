@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local proj_workspaces = require 'project_workspaces'
+local tools = require 'tools'
 
 local
 function default()
@@ -31,19 +32,6 @@ function config()
     build_pane:send_text 'git pull\n'
 end
 
-local
-function home_computer()
-    local directory = os.getenv("HOME")
-    local i, t, popen = 0, {}, io.popen
-    local pfile = popen('ls -a "'..directory..'"')
-    for filename in pfile:lines() do
-        if filename == "myprojects" then
-            return true
-        end
-    end
-    pfile:close()
-    return false
-end
 
 wezterm.on('gui-startup', function(cmd)
 
@@ -54,7 +42,7 @@ wezterm.on('gui-startup', function(cmd)
     -- config
     config()
 
-    if home_computer() then
+    if tools.home_computer() then
         proj_workspaces.home()
     else
         proj_workspaces.work()
