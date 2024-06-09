@@ -127,7 +127,7 @@ local keys = {
                         loc = os.getenv("HOME") .. "/projects/"
                     end
 
-                    os.execute('cd ' .. loc .. ' && rye init ' .. line .. ' && cd ' .. line .. ' && rye pin 3.10 && rye sync')
+                    os.execute('cd ' .. loc .. ' && rye init ' .. line .. ' && cd ' .. line .. ' && rye pin ' .. tools.ptyhon_version .. ' && rye sync')
 
                     if tools.home_computer() then
                         workspace.home()

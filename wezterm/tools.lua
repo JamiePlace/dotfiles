@@ -1,3 +1,4 @@
+local python_version = "3.10"
 local home_computer
 -- Check if the computer is a home computer
 ---@rtype boolean
@@ -16,5 +17,6 @@ end
 
 local m = {
     home_computer = home_computer,
+    ptyhon_version = python_version
 }
 return m
