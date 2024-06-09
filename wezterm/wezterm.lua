@@ -95,7 +95,7 @@ end
 
 if OnUnix() then
     config.initial_rows = 48
-    config.initial_cols = 80
+    config.initial_cols = 120
     config.font_size = 16
     config.window_background_opacity = 1
     config.text_background_opacity = 1
@@ -124,22 +124,6 @@ for i = 1, 8 do
 end
 -- remove ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
-
-config.unix_domains = {
-  {
-    name = 'config',
-    proxy_command = {
-        "cd $HOME/.config/",
-    },
-  },
-  {
-    name = 'lure',
-    proxy_command = {
-        "cd $HOME/projects/auto-lure-generation",
-    },
-  },
-}
-
 -- This causes `wezterm` to act as though it was started as
 -- `wezterm connect unix` by default, connecting to the unix
 -- domain on startup.
