@@ -1,0 +1,19 @@
+{
+  "schemes" : [
+    {
+      "if" : {
+        "device" : {
+          "serialNumber" : "976CFF97",
+          "productName" : "PRO X Wireless",
+          "category" : "mouse",
+          "productID" : "0xc094",
+          "vendorID" : "0x46d"
+        }
+      },
+      "pointer" : {
+        "disableAcceleration" : true
+      }
+    }
+  ],
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.9.5"
+}
