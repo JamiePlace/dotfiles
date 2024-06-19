@@ -20,15 +20,9 @@ function project_workspace(name, dir, loc)
         size = 0.9,
         cwd = project_dir,
     }
-    local git_pane = editor_pane:split {
-        direction = 'Left',
-        size = 0.1,
-        cwd = project_dir,
-    }
     -- may as well kick off a build in that pane
     editor_pane:send_text 'activate\nnvim .\nclear\n'
     build_pane:send_text 'activate\nclear\n'
-    git_pane:send_text 'activate\ngit status\n'
 end
 
 -- generates works spaces for work computer
