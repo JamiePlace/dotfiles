@@ -1,6 +1,6 @@
 {
     "initial_working_directory": "~",
-    "editor_theme": "Ambiance",
+    "editor_theme": "Catppuccin",
     "posix_terminal_shell": "bash",
     "panes": {
         "quadrants": [
@@ -32,5 +32,13 @@
         "console_left_on_top": false,
         "console_right_on_top": false,
         "additional_source_columns": 0
-    }
+    },
+    "jobs_tab_visibility": "shown",
+    "default_project_location": "/Users/jamieplace/projects",
+    "new_proj_git_init": true,
+    "new_proj_use_renv": true,
+    "insert_native_pipe_operator": true,
+    "relative_line_numbers": true,
+    "margin_column": 99,
+    "font_size_points": 12
 }
