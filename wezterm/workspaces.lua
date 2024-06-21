@@ -28,8 +28,11 @@ function config()
         workspace = 'config',
         cwd = project_dir,
     }
-    -- may as well kick off a build in that pane
-    build_pane:send_text 'git pull\n'
+    if tools.on_unix() then
+        build_pane:send_text 'git pull\n'
+    else
+        build_pane:send_paste 'git pull\r'
+    end
 end
 
 
