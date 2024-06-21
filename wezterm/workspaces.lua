@@ -45,7 +45,11 @@ wezterm.on('gui-startup', function(cmd)
     if tools.home_computer() then
         proj_workspaces.home()
     else
-        proj_workspaces.work()
+        if tools.on_unix() then
+            proj_workspaces.work()
+        else
+            proj_workspaces.home_windows()
+        end
     end
 
 

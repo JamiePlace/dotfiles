@@ -39,4 +39,12 @@ function workspaces.home()
     end
 end
 
+-- generates works spaces for home windows computer
+function workspaces.home_windows()
+    for dir in io.popen([[powershell "Get-ChildItem C:\Users\jamie\projects\ -Recurse -Depth 2 -File pyproject.toml | Select DirectoryName | Split-Path -Leaf | %{ $_ -replace '[}]' }"]]):lines() do
+        print(dir)
+        project_workspace(dir, dir, 'work')
+    end
+end
+
 return workspaces
