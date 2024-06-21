@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local tools = require 'tools'
 local mux = wezterm.mux
 
 local workspaces = {}
@@ -20,9 +21,14 @@ function project_workspace(name, dir, loc)
         size = 0.9,
         cwd = project_dir,
     }
-    -- may as well kick off a build in that pane
-    editor_pane:send_text 'activate\nnvim .\nclear\n'
-    build_pane:send_text 'activate\nclear\n'
+    if tools.on_unix() then
+        -- may as well kick off a build in that pane
+        editor_pane:send_text 'activate\nnvim .\nclear\n'
+        build_pane:send_text 'activate\nclear\n'
+    else
+        editor_pane:send_paste 'activate\r'
+        build_pane:send_paste 'activate\r'
+    end
 end
 
 -- generates works spaces for work computer

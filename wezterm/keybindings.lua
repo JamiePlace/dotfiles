@@ -132,7 +132,11 @@ local keys = {
                     if tools.home_computer() then
                         workspace.home()
                     else
-                        workspace.work()
+                        if tools.on_unix() then
+                            workspace.work()
+                        else
+                            workspace.home_windows()
+                        end
                     end
                     window:perform_action(
                         act.SwitchToWorkspace {
