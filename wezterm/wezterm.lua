@@ -7,9 +7,9 @@ local keys = require 'keybindings'
 -- Some empty tables for later use
 local config = {}
 local mouse_bindings = {}
-local launch_menu = {}
 config.color_scheme ='Catppuccin Mocha (Gogh)'
 --config.color_scheme ='Catppuccin Latte (Gogh)'
+local launch_menu = {}
 
 function OnUnix()
     if (package.config:sub(1,1)) == ("\\") then
