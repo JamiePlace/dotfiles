@@ -29,7 +29,7 @@ require("lazy").setup({
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
-                ensure_installed = {  "lua", "vim", "python", "rust", "bash", "json", "toml", "vimdoc"},
+                ensure_installed = { "markdown", "markdown_inline", "r", "rnoweb","lua", "vim", "python", "rust", "bash", "json", "toml", "vimdoc"},
                 ignore_install = {"yaml"},
                 sync_install = false,
                 highlight = { enable = true , additional_vim_regex_highlighting = false},
@@ -38,6 +38,39 @@ require("lazy").setup({
         end
     },
     {"ikatyang/tree-sitter-yaml"},
+    -- R
+    {
+        "R-nvim/R.nvim",
+        lazy = false,
+        opts = {
+            -- Create a table with the options to be passed to setup()
+            R_args = { "--quiet", "--no-save" },
+            hook = {
+                on_filetype = function()
+                    -- This function will be called at the FileType event
+                    -- of files supported by R.nvim. This is an
+                    -- opportunity to create mappings local to buffers.
+                    vim.keymap.set("n", "<Enter>", "<Plug>RDSendLine", { buffer = true })
+                    vim.keymap.set("v", "<Enter>", "<Plug>RSendSelection", { buffer = true })
+                end,
+            },
+            pdfviewer = "",
+            assign_map = "<NOP>",
+        },
+    },
+    {
+        "R-nvim/cmp-r",
+        {
+            "hrsh7th/nvim-cmp",
+            config = function()
+                local cmp = require("cmp")
+                cmp.setup({
+                    sources = {{ name = "cmp_r" }},
+                })
+                require("cmp_r").setup({ })
+            end,
+        },
+    },
     -- lsp
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -88,7 +121,7 @@ require("lazy").setup({
             vim.g.copilot_no_tab_map = true
             vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
             vim.g.copilot_filetypes = {
-                ["*"] = false,
+                ["*"] = true,
                 ["rust"] = true,
                 ["python"] = true,
                 ["lua"] = true,

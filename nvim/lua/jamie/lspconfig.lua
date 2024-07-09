@@ -4,6 +4,7 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
     'pyright',
+    'r_language_server',
     'lua_ls',
     'rust_analyzer'
 })
@@ -56,6 +57,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
   vim.keymap.set("n", "<C-f>", function() Format() end, opts)
+  vim.keymap.set("n", "<leader>ff", function() vim.lsp.buf.formatting() end, opts)
   vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>")
 
 end)
@@ -83,6 +85,7 @@ require('lspconfig').lua_ls.setup({})
 
 require('lspconfig').r_language_server.setup({
     flags = {debounce_text_changes = 150},
+    capabilities = capabilities
 })
 
 lsp.setup()

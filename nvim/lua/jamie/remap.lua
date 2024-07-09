@@ -29,12 +29,13 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 -- move in and out of terminal 
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
+vim.keymap.set("i", "<Esc>", "<Esc>")
 vim.keymap.set("i", "<C-c>", "<Esc>")
 -- resize with arrows
-vim.keymap.set("n", "<C-k>", ":resize -2<CR>", { silent = true })
-vim.keymap.set("n", "<C-j>", ":resize +2<CR>", { silent = true })
-vim.keymap.set("n", "<C-h>", ":vertical resize -2<CR>", { silent = true })
-vim.keymap.set("n", "<C-l>", ":vertical resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-up>", ":resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-down>", ":resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-left>", ":vertical resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-right>", ":vertical resize +2<CR>", { silent = true })
 -- jump to previous buffer
 vim.keymap.set("n", "<leader>ll", ":b#<CR>", { silent = true })
 
@@ -71,3 +72,10 @@ vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, {
 vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
 vim.keymap.set("n", "<leader>tt", function() vim.cmd(":TodoTrouble") end, { desc = "All todos in project" })
 
+-- R
+-- assignment
+vim.keymap.set("i", "<C-[>", "<-", { desc = "Assignment Operator" })
+-- pipe operator
+vim.keymap.set("i", "<C-]>", "|>", { desc = "Pipe Operator" })
+-- function docstring
+vim.keymap.set("i", "<C-\\>", "#' ", { desc = "Pipe Operator" })
