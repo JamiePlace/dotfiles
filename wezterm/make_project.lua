@@ -12,10 +12,18 @@ function make_project(name)
     if tools.home_computer() then
         loc = os.getenv("HOME") .. "/myprojects/"
     else
-        loc = os.getenv("HOME") .. "/projects/"
+        if tools.on_unix() then
+            loc = os.getenv("HOME") .. "/projects/"
+        else
+            loc = "C:\\Users\\jamie\\projects\\"
+        end
     end
 
-    os.execute('cd ' .. loc .. ' && rye init ' .. name .. ' && cd ' .. name .. ' && rye pin ' .. python_version[1] .. ' && rye sync')
+    if tools.on_unix() then
+        os.execute('cd ' .. loc .. ' && rye init ' .. name .. ' && cd ' .. name .. ' && rye pin ' .. python_version[1] .. ' && rye sync')
+    else
+        os.execute('powershell "cd ' .. loc .. '; rye init ' .. name .. '; cd ' .. name .. '; rye pin ' .. python_version[1] .. '; rye sync"')
+    end
 
     if tools.home_computer() then
         workspace.home()
