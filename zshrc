@@ -57,7 +57,7 @@ alias ls="eza"
 alias csv="csvlens"
 alias light="lua $HOME/.config/tools/light_mode.lua"
 alias fvim="fzf | xargs -I{} nvim ./{}"
-alias gclean="git branch -v | rg '\[gone\]' | awk '{print $1}' | xargs -I{} git branch -D {}"
+alias pre="git add . && git commit -m 'pre-commit formatting'"
 
 eval "$(zoxide init zsh)"
 # lazy git alias
