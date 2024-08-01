@@ -4,7 +4,6 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
     'pyright',
-    'r_language_server',
     'lua_ls',
     'rust_analyzer'
 })
