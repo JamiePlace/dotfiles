@@ -16,7 +16,19 @@ function OnUnix()
         return false
     end
     return true
+end
 
+function RandomBackground()
+    local directory = "/Users/jamieplace/Pictures/backgrounds/"
+    local i, t, popen = 0, {}, io.popen
+    local pfile = popen('ls -a "'..directory..'"')
+    for filename in pfile:lines() do
+        i = i + 1
+        t[i] = filename
+    end
+    pfile:close()
+    local rand = math.random(1, #t)
+    return directory .. t[rand]
 end
 
 local process_icons = {
@@ -100,18 +112,18 @@ if OnUnix() then
     config.window_background_opacity = 1
     config.text_background_opacity = 1
 
-    --config.window_background_image = "/Users/jamieplace/Pictures/mystic_mountain.png"
-    --config.window_background_image_hsb = {
-    --    -- Darken the background image by reducing it to 1/3rd
-    --    brightness = 0.15,
+    config.window_background_image = RandomBackground()
+    config.window_background_image_hsb = {
+        -- Darken the background image by reducing it to 1/3rd
+        brightness = 0.1,
 
-    --    -- You can adjust the hue by scaling its value.
-    --    -- a multiplier of 1.0 leaves the value unchanged.
-    --    hue = 1,
+        -- You can adjust the hue by scaling its value.
+        -- a multiplier of 1.0 leaves the value unchanged.
+        hue = 1,
 
-    --    -- You can adjust the saturation also.
-    --    saturation = 1,
-    --}
+        -- You can adjust the saturation also.
+        saturation = 1,
+    }
 end
 
 for i = 1, 8 do
@@ -122,6 +134,7 @@ for i = 1, 8 do
     action = act.ActivateTab(i - 1),
   })
 end
+config.tab_bar_at_bottom = true
 -- remove ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 -- This causes `wezterm` to act as though it was started as
