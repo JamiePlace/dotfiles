@@ -27,8 +27,8 @@ function RandomBackground()
         t[i] = filename
     end
     pfile:close()
-    local rand = math.random(1, #t)
-    return directory .. t[rand]
+    local rand = math.random(2, #t)
+    return directory .. t[rand-1]
 end
 
 local process_icons = {
@@ -122,7 +122,7 @@ if OnUnix() then
         hue = 1,
 
         -- You can adjust the saturation also.
-        saturation = 1,
+        saturation = 0.1,
     }
 end
 
