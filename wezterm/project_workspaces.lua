@@ -17,8 +17,8 @@ function project_workspace(name, dir, loc)
         cwd = project_dir,
     }
     local editor_pane = build_pane:split {
-        direction = 'Top',
-        size = 0.9,
+        direction = 'Right',
+        size = 0.8,
         cwd = project_dir,
     }
     if tools.on_unix() then
