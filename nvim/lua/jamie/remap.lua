@@ -5,6 +5,8 @@ vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent director
 vim.keymap.set("n", ",", ";")
 vim.keymap.set("n", ";", ":")
 
+vim.keymap.set("n", "<C-g>", "g_a)jj")
+
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
