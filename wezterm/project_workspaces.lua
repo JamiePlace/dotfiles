@@ -8,6 +8,8 @@ function project_workspace(name, dir, loc)
     local base_dir
     if loc == 'work' then
         base_dir = "/projects/"
+    elseif loc == 'startup' then
+        base_dir = "/wildatlanticdata/"
     else
         base_dir = "/myprojects/"
     end
@@ -48,8 +50,10 @@ end
 -- generates works spaces for home windows computer
 function workspaces.home_windows()
     for dir in io.popen([[powershell "Get-ChildItem C:\Users\jamie\projects\ -Recurse -Depth 2 -File pyproject.toml | Select DirectoryName | Split-Path -Leaf | %{ $_ -replace '[}]' }"]]):lines() do
-        print(dir)
         project_workspace(dir, dir, 'work')
+    end
+    for dir in io.popen([[powershell "Get-ChildItem C:\Users\jamie\wildatlanticdata\ -Recurse -Depth 2 -File .git | Select DirectoryName | Split-Path -Leaf | %{ $_ -replace '[}]' }"]]):lines() do
+        project_workspace(dir, dir, 'startup')
     end
 end
 
