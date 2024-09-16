@@ -27,7 +27,7 @@ function RandomBackground()
         t[i] = filename
     end
     pfile:close()
-    local rand = math.random(2, #t)
+    local rand = math.random(1, #t)
     return directory .. t[rand-1]
 end
 

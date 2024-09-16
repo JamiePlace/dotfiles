@@ -83,3 +83,4 @@ ya() {
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source "$HOME/.rye/env"
