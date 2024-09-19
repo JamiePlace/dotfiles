@@ -75,8 +75,8 @@ local keys = {
     -- Show the launcher in fuzzy selection mode and have it list all workspaces
     -- and allow activating one.
     {
-        key = '9',
-        mods = 'ALT',
+        key = '(',
+        mods = 'CTRL|SHIFT',
         action = wezterm.action.ShowLauncherArgs {
             flags = 'FUZZY|WORKSPACES',
         },
