@@ -63,6 +63,7 @@ vim.keymap.set("n", "<leader>rt", ":vsplit<CR><C-w>l:te<CR>")
 vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
 -- fugitive
 vim.keymap.set("n", "<leader>gs", ":G<CR>")
+vim.keymap.set("n", "<C-G>", ":G commit<CR>")
 vim.keymap.set("n", "<leader>ga", ":G add .<CR>")
 vim.keymap.set("n", "<leader>gb", ":G blame<CR>")
 vim.keymap.set("n", "<leader>gd", ":G diff<CR>")
