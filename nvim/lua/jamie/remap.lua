@@ -1,9 +1,11 @@
 vim.g.mapleader = " "
 --vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<C-l>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set("n", ",", ";")
 vim.keymap.set("n", ";", ":")
+vim.keymap.set("n", "<C-s>","<CMD>w<CR>")
 
 vim.keymap.set("n", "<C-g>", "g_a)jj")
 
@@ -43,7 +45,9 @@ vim.keymap.set("n", "<leader>ll", ":b#<CR>", { silent = true })
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', function() builtin.find_files({path_display = { "truncate" }}) end, {})
+vim.keymap.set('n', '<C-f>', function() builtin.find_files({path_display = { "truncate" }}) end, {})
 vim.keymap.set('n', '<leader>pg', function() builtin.live_grep({path_display = { "truncate" }}) end, {})
+vim.keymap.set('n', '<C-g>', function() builtin.live_grep({path_display = { "truncate" }}) end, {})
 vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
 --vim.keymap.set('n', '<leader>pr',function() builtin.lsp_references({show_line=false, path_display = { "truncate" }}) end, { noremap = true, silent = true})

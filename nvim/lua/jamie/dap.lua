@@ -29,4 +29,4 @@ vim.keymap.set("n", "<leader>dd", ':DapContinue<CR>', { noremap = true, silent =
 vim.keymap.set("n", "<leader>de", ':DapTerminate<CR>', { noremap = true, silent = true })
 
 
-vim.keymap.set('n', '<C-s>', ':lua require("dapui").eval()<CR>',{ noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', ':lua require("dapui").eval()<CR>',{ noremap = true, silent = true })

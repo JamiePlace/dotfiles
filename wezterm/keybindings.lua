@@ -3,6 +3,14 @@ local act = wezterm.action
 local tools = require 'tools'
 local workspace = require 'project_workspaces'
 
+ConfigPath = function ()
+    if tools.home_computer() then
+        return "/C/Users/jamie/.config/wezterm/wezterm.lua"
+    else
+        return "/Users/jamieplace/.config/wezterm/wezterm.lua"
+    end
+end
+
 local keys = {
 	-- This will create a new split and run your default program inside it
 	{
@@ -148,5 +156,50 @@ local keys = {
             end),
         },
     },
+    {
+        key = 'T',
+        mods = 'CTRL|SHIFT',
+        action = wezterm.action_callback(function(window, pane)
+            -- get builting color schemes
+            local schemes = wezterm.get_builtin_color_schemes()
+            local choices = {}
+
+            -- populate theme names in choices list
+            for key, _ in pairs(schemes) do
+                table.insert(choices, { label = tostring(key) })
+            end
+
+            -- sort choices list
+            table.sort(choices, function(c1, c2)
+                return c1.label < c2.label
+            end)
+
+            window:perform_action(
+                act.InputSelector({
+                    title = "🎨 Pick a Theme!",
+                    choices = choices,
+                    fuzzy = true,
+
+                    -- execute 'sed' shell command to replace the line 
+                    -- responsible of colorscheme in my config
+                    action = wezterm.action_callback(function(inner_window, inner_pane, _, label)
+                        inner_window:perform_action(
+                            act.SpawnCommandInNewTab({
+                                args = {
+                                    "sed",
+                                    "-i",
+                                    "",
+                                    's/config.color_scheme =.*/config.color_scheme = "' .. label .. '"/',
+                                    ConfigPath(),
+                                },
+                            }),
+                            inner_pane
+                        )
+                    end),
+                }),
+                pane
+            )
+        end)
+    }
 }
 return keys
