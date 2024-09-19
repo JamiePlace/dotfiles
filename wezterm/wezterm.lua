@@ -7,7 +7,7 @@ local keys = require 'keybindings'
 -- Some empty tables for later use
 local config = {}
 local mouse_bindings = {}
-config.color_scheme = "Ashes (base16)"
+config.color_scheme = "Atelier Cave (base16)"
 local launch_menu = {}
 
 function OnUnix()

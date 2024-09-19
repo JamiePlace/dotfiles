@@ -1,0 +1,14 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+format = '''
+[](bold green)$directory$all
+[┌───────────────────](bold green)
+[└─>](bold green) '''
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Disable the package module, hiding it from the prompt completely
+[character]
+disabled = true
+[line_break]
+disabled = true
