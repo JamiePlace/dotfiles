@@ -3,3 +3,4 @@ brew install --cask raycast
 brew install --cask rectangle
 brew install jless
 brew install csvlens
+brew install starship

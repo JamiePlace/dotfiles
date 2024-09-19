@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 --vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-vim.keymap.set("n", "<C-l>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<C-l>", "-<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set("n", ",", ";")
 vim.keymap.set("n", ";", ":")
@@ -61,6 +61,13 @@ vim.keymap.set("n", "<leader>pr", function() require("trouble").toggle("lsp_refe
 -- open terminal
 vim.keymap.set("n", "<leader>rt", ":vsplit<CR><C-w>l:te<CR>")
 vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
+-- fugitive
+vim.keymap.set("n", "<leader>gs", ":G<CR>")
+vim.keymap.set("n", "<leader>ga", ":G add .<CR>")
+vim.keymap.set("n", "<leader>gb", ":G blame<CR>")
+vim.keymap.set("n", "<leader>gd", ":G diff<CR>")
+vim.keymap.set("n", "<leader>gD", ":G difftool<CR>")
+
 
 -- my repl solution
 -- could do this better where I look for the ptpython buffer and then

@@ -6,7 +6,7 @@ format = '''
 [└─>](bold green) '''
 # Inserts a blank line between shell prompts
 add_newline = false
-
+command_timeout = 1000
 # Disable the package module, hiding it from the prompt completely
 [character]
 disabled = true
