@@ -7,8 +7,7 @@ local keys = require 'keybindings'
 -- Some empty tables for later use
 local config = {}
 local mouse_bindings = {}
-config.color_scheme ='Catppuccin Mocha (Gogh)'
---config.color_scheme ='Catppuccin Latte (Gogh)'
+config.color_scheme = "Ashes (base16)"
 local launch_menu = {}
 
 function OnUnix()
@@ -19,7 +18,7 @@ function OnUnix()
 end
 
 function RandomBackground()
-    local directory = "/Users/jamieplace/Pictures/backgrounds/"
+    local directory = "Users/jamieplace/Pictures/backgrounds/"
     local i, t, popen = 0, {}, io.popen
     local pfile = popen('ls -a "'..directory..'"')
     for filename in pfile:lines() do
@@ -95,7 +94,7 @@ config.disable_default_key_bindings = true
 config.keys = keys
 config.mouse_bindings = mouse_bindings
 config.send_composed_key_when_left_alt_is_pressed = true
-config.exit_behavior = 'Hold'
+config.exit_behavior = 'CloseOnCleanExit'
 config.window_decorations = 'RESIZE'
 if not OnUnix() then
     config.initial_rows = 50
@@ -112,18 +111,18 @@ if OnUnix() then
     config.window_background_opacity = 1
     config.text_background_opacity = 1
 
-    config.window_background_image = RandomBackground()
-    config.window_background_image_hsb = {
-        -- Darken the background image by reducing it to 1/3rd
-        brightness = 0.05,
+    --config.window_background_image =  "Users/jamieplace/Pictures/backgrounds/dune.png"
+    --config.window_background_image_hsb = {
+    --    -- Darken the background image by reducing it to 1/3rd
+    --    brightness = 0.05,
 
-        -- You can adjust the hue by scaling its value.
-        -- a multiplier of 1.0 leaves the value unchanged.
-        hue = 1,
+    --    -- You can adjust the hue by scaling its value.
+    --    -- a multiplier of 1.0 leaves the value unchanged.
+    --    hue = 1,
 
-        -- You can adjust the saturation also.
-        saturation = 0.1,
-    }
+    --    -- You can adjust the saturation also.
+    --    saturation = 0.1,
+    --}
 end
 
 for i = 1, 8 do
