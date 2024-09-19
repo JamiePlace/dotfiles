@@ -157,15 +157,5 @@ local keys = {
             )
         end)
     },
-    {
-        key = 'G',
-        mods = 'CTRL|SHIFT',
-        action = act.SpawnCommandInNewTab({
-            args = {
-                "git",
-                "commit"
-            },
-        })
-    }
 }
 return keys
