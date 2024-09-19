@@ -59,6 +59,8 @@ alias light="lua $HOME/.config/tools/light_mode.lua"
 alias fvim="fzf | xargs -I{} nvim ./{}"
 alias pre="git add . && git commit -m 'pre-commit formatting'"
 alias fzg="$HOME/.config/tools/fzgrep.sh"
+alias gc="git commit"
+alias ga="git add ."
 
 eval "$(zoxide init zsh)"
 # lazy git alias

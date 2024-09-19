@@ -112,50 +112,6 @@ local keys = {
             end),
         },
     },
-    -- Prompt for a name to use for a new workspace and switch to it.
-    {
-        key = 'P',
-        mods = 'CTRL|SHIFT',
-        action = act.PromptInputLine {
-            description = wezterm.format {
-                { Attribute = { Intensity = 'Bold' } },
-                { Foreground = { AnsiColor = 'Aqua' } },
-                { Text = '  python project name ' },
-            },
-            action = wezterm.action_callback(function(window, pane, line)
-                -- line will be `nil` if they hit escape without entering anything
-                -- An empty string if they just hit enter
-                -- Or the actual line of text they wrote
-                if line then
-                    print(line)
-                    local loc
-                    if tools.home_computer() then
-                        loc = os.getenv("HOME") .. "/myprojects/"
-                    else
-                        loc = os.getenv("HOME") .. "/projects/"
-                    end
-
-                    os.execute('cd ' .. loc .. ' && rye init ' .. line .. ' && cd ' .. line .. ' && rye pin ' .. tools.ptyhon_version .. ' && rye sync')
-
-                    if tools.home_computer() then
-                        workspace.home()
-                    else
-                        if tools.on_unix() then
-                            workspace.work()
-                        else
-                            workspace.home_windows()
-                        end
-                    end
-                    window:perform_action(
-                        act.SwitchToWorkspace {
-                            name = line,
-                        },
-                        pane
-                    )
-                end
-            end),
-        },
-    },
     {
         key = 'T',
         mods = 'CTRL|SHIFT',
@@ -200,6 +156,16 @@ local keys = {
                 pane
             )
         end)
+    },
+    {
+        key = 'G',
+        mods = 'CTRL|SHIFT',
+        action = act.SpawnCommandInNewTab({
+            args = {
+                "git",
+                "commit"
+            },
+        })
     }
 }
 return keys
