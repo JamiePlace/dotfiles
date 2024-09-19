@@ -12,8 +12,8 @@ export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython/"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="prompt pure"
-autoload -U promptinit; promptinit
-prompt pure
+#autoload -U promptinit; promptinit
+#prompt pure
 
 plugins=(git)
 
@@ -84,3 +84,4 @@ ya() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source "$HOME/.rye/env"
+eval "$(starship init zsh)"
