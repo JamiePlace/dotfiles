@@ -56,7 +56,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
   vim.keymap.set("n", "<leader>fm", function() Format() end, opts)
-  vim.keymap.set("n", "<leader>ff", function() vim.lsp.buf.formatting() end, opts)
+  vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.formatting() end, opts)
   vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>")
 
 end)
