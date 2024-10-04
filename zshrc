@@ -1,12 +1,19 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+BREW=/home/linuxbrew/.linuxbrew/bin/brew
+if [ -x "$BREW" -a -z "$HOMEBREW_PREFIX" ]; then
+  PREV_PATH=$PATH
+  # brew needs tools like dirname and readlink
+  PATH=/usr/bin
+  # this sets PATH, HOMEBREW_PREFIX, HOMEBREW_CELLAR, HOMEBREW_REPOSITORY
+  eval "$($BREW shellenv)"
+  export PATH=$PREV_PATH${PATH+:$PATH}
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-# Path to xdg_config_home
-#export XDG_CONFIG_HOME="$Home/.config/"
 export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython/"
 
+source $ZSH/oh-my-zsh.sh
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -17,7 +24,6 @@ export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython/"
 
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -62,7 +68,6 @@ alias fzg="$HOME/.config/tools/fzgrep.sh"
 alias gc="git commit"
 alias ga="git add ."
 
-eval "$(zoxide init zsh)"
 # lazy git alias
 alias lg="lazygit"
 # fuzzy finding change dir
@@ -85,5 +90,6 @@ ya() {
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source "$HOME/.rye/env"
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
