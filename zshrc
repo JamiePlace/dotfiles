@@ -38,10 +38,10 @@ export APPLE_SSH_ADD_BEHAVIOR="macos"
 
 
 # set ssh keys
-eval $(ssh-agent -s)
-ssh-add -K ~/.ssh/id_ed25519 > /dev/null 2>&1
-ssh-add -K ~/.ssh/id_rsa > /dev/null 2>&1
-ssh-add -K ~/.ssh/gitkraken_rsa > /dev/null 2>&1
+eval "$(ssh-agent -s)"
+ssh-add -K $HOME/.ssh/id_ed25519 > /dev/null 2>&1
+ssh-add -K $HOME/.ssh/id_rsa > /dev/null 2>&1
+ssh-add -K $HOME/.ssh/gitkraken_rsa > /dev/null 2>&1
 
 
 # Compilation flags
@@ -95,3 +95,4 @@ ya() {
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+

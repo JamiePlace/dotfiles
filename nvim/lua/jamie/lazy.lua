@@ -100,11 +100,12 @@ require("lazy").setup({
     -- telescope "fuzzy finder"
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.5',
-        -- or                              , branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+		}
     },
-    -- fzf telescope
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     -- autopairs
     {
         "windwp/nvim-autopairs", event="InsertEnter", opts = {},
