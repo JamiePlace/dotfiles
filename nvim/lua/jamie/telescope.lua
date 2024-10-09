@@ -21,8 +21,5 @@ function OnUnix()
     return true
 
 end
-if OnUnix() then
-	-- To get fzf loaded and working with telescope, you need to call
-	-- load_extension, somewhere after setup function:
-	telescope.load_extension('fzf')
-end
+
+telescope.load_extension('fzf')
