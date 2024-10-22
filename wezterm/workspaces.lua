@@ -3,6 +3,10 @@ local mux = wezterm.mux
 local proj_workspaces = require 'project_workspaces'
 local tools = require 'tools'
 
+if not tools.on_unix() then
+    wezterm.home_dir = '/home/jamie/'
+end
+
 local
 function default()
     local tab, build_pane, window = mux.spawn_window {
@@ -45,16 +49,7 @@ wezterm.on('gui-startup', function(cmd)
     -- config
     config()
 
-    if tools.home_computer() then
-        proj_workspaces.home()
-    else
-        if tools.on_unix() then
-            proj_workspaces.work()
-        else
-            proj_workspaces.home_windows()
-        end
-    end
-
+    proj_workspaces.work()
 
     mux.set_active_workspace 'home'
 end)
