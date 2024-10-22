@@ -1,7 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
-    - /mnt/c/Users/jamie/.config
     - /home/jamie/.config
+    - /home/jamie/projects/optimus-prime
+    - /mnt/c/Users/jamie/.config
 startuppopupversion: 5
 lastversion: 0.44.1
 customcommandshistory: []

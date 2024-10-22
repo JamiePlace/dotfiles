@@ -34,6 +34,7 @@ if not OnUnix() then
       config = wezterm.config_builder()
     end
     config.default_domain = 'WSL:Ubuntu'
+    wezterm.home_dir = '/home/jamie/'
 end
 config.color_scheme = "Argonaut (Gogh)"
 local process_icons = {
@@ -138,23 +139,5 @@ end
 config.tab_bar_at_bottom = true
 -- remove ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
--- This causes `wezterm` to act as though it was started as
--- `wezterm connect unix` by default, connecting to the unix
--- domain on startup.
--- If you prefer to connect manually, leave out this line.
---config.default_gui_startup_args = { 'connect', 'config' }
---config.wsl_domains = {
---  {
---    -- The name of this specific domain.  Must be unique amonst all types
---  -- of domain in the configuration file.
---    name = 'WSL:Ubuntu',
---
---  -- The name of the distribution.  This identifies the WSL distribution.
---  -- It must match a valid distribution from your `wsl -l -v` output in
---  -- order for the domain to be useful.
---    distribution = 'Ubuntu',
---  },
---}
---config.default_domain = 'WSL:Ubuntu'
 return config
 

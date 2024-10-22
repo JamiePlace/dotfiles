@@ -15,27 +15,9 @@ M.on_unix = function()
 
 end
 
--- Check if the computer is a home computer
----@rtype boolean
-M.home_computer = function()
-    local directory
-    if M.on_unix() then
-        directory = os.getenv("HOME")
-    else
-        directory = "C:\\Users\\jamie"
-    end
-
-    local i, t, popen = 0, {}, io.popen
-    local pfile = popen('ls -a "'..directory..'"')
-    for filename in pfile:lines() do
-        if filename == "myprojects" then
-            return true
-        end
-    end
-    pfile:close()
-    return false
+if not M.on_unix() then
+    wezterm.home_dir = '/home/jamie/'
 end
-
 -- Get a random background from the backgrounds directory
 ---@rtype string
 M.random_background = function()
@@ -56,11 +38,7 @@ M.theme_switcher = function(window, pane)
     -- get builting color schemes
     local schemes = wezterm.get_builtin_color_schemes()
     local choices = {}
-    if M.home_computer() then
-        local config_path = "/C/Users/jamie/.config/wezterm/wezterm.lua"
-    else
-        local config_path = "/Users/jamieplace/.config/wezterm/wezterm.lua"
-    end
+    local config_path = "/Users/jamieplace/.config/wezterm/wezterm.lua"
 
     -- populate theme names in choices list
     for key, _ in pairs(schemes) do
