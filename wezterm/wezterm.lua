@@ -7,7 +7,6 @@ local keys = require 'keybindings'
 -- Some empty tables for later use
 local config = {}
 local mouse_bindings = {}
---config.color_scheme = "AlienBlood"
 local launch_menu = {}
 
 function OnUnix()
@@ -30,6 +29,13 @@ function RandomBackground()
     return directory .. t[rand-1]
 end
 
+if not OnUnix() then
+    if wezterm.config_builder then
+      config = wezterm.config_builder()
+    end
+    config.default_domain = 'WSL:Ubuntu'
+end
+config.color_scheme = "Argonaut (Gogh)"
 local process_icons = {
   ['docker'] = wezterm.nerdfonts.linux_docker,
   ['docker-compose'] = wezterm.nerdfonts.linux_docker,
@@ -65,12 +71,6 @@ wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(window:active_workspace() .. "   ")
 end)
 
-if not OnUnix() then
-    if wezterm.config_builder then
-      config = wezterm.config_builder()
-    end
-    config.default_domain = 'WSL:Ubuntu'
-end
 
 mouse_bindings = {
     {

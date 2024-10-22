@@ -1,7 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
-    - /home/jamie/.config
     - /mnt/c/Users/jamie/.config
+    - /home/jamie/.config
 startuppopupversion: 5
 lastversion: 0.44.1
 customcommandshistory: []

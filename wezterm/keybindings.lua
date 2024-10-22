@@ -190,7 +190,7 @@ local keys = {
                                     "sed",
                                     "-i",
                                     's/config.color_scheme =.*/config.color_scheme = "' .. label .. '"/',
-                                    "/mnt/c/Users/jamie/.config/wezterm/wezterm.lua",
+                                    "/home/jamie/.config/wezterm/wezterm.lua",
                                 },
                             }),
                             inner_pane
