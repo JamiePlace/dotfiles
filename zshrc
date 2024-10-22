@@ -3,7 +3,7 @@ BREW=/home/linuxbrew/.linuxbrew/bin/brew
 if [ -x "$BREW" -a -z "$HOMEBREW_PREFIX" ]; then
   PREV_PATH=$PATH
   # brew needs tools like dirname and readlink
-  PATH=/usr/bin
+  PATH=/usr/bin:$HOME/.cargo/bin
   # this sets PATH, HOMEBREW_PREFIX, HOMEBREW_CELLAR, HOMEBREW_REPOSITORY
   eval "$($BREW shellenv)"
   export PATH=$PREV_PATH${PATH+:$PATH}
@@ -96,3 +96,5 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+
+. "$HOME/.cargo/env"
