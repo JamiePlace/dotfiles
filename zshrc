@@ -37,11 +37,6 @@ export AWS_DEFAULT_PROFILE="thq-llm-dev"
 export APPLE_SSH_ADD_BEHAVIOR="macos"
 
 
-# set ssh keys
-eval "$(ssh-agent -s)"
-ssh-add -K $HOME/.ssh/id_ed25519 > /dev/null 2>&1
-ssh-add -K $HOME/.ssh/id_rsa > /dev/null 2>&1
-ssh-add -K $HOME/.ssh/gitkraken_rsa > /dev/null 2>&1
 
 
 # Compilation flags
@@ -92,10 +87,19 @@ ya() {
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(fzf --zsh)
+# if on windows then do other stuff
+if [[ $(uname) != "Darwin" ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    source <(fzf --zsh)
+    eval "$(ssh-agent -s)"
+fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+
+# set ssh keys
+ssh-add -K $HOME/.ssh/id_ed25519 > /dev/null 2>&1
+ssh-add -K $HOME/.ssh/id_rsa > /dev/null 2>&1
+ssh-add -K $HOME/.ssh/gitkraken_rsa > /dev/null 2>&1
 
 . "$HOME/.cargo/env"
