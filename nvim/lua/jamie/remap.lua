@@ -21,6 +21,7 @@ vim.keymap.set("x", "<leader>pl", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({"n", "v"}, "<leader>P", [["+p]])
+vim.keymap.set("i", "<C-p>", [[<C-o>"+p]])
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 

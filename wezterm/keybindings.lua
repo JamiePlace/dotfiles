@@ -146,7 +146,7 @@ local keys = {
                                     "-i",
                                     "",
                                     's/config.color_scheme =.*/config.color_scheme = "' .. label .. '"/',
-                                    ConfigPath(),
+                                    '/Users/jamieplace/.config/wezterm/wezterm.lua',
                                 },
                             }),
                             inner_pane
