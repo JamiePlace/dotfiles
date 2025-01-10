@@ -14,6 +14,7 @@ require("lazy").setup({
     -- theme
     {'Mofiqul/vscode.nvim', lazy = false, priority = 1000},
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    {"adisen99/apprentice.nvim", dependencies = {"rktjmp/lush.nvim"}, name="apprentice", priority = 1000},
     -- bar at the bottom
     {
         'nvim-lualine/lualine.nvim',

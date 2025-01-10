@@ -16,12 +16,6 @@ function project_workspace(name, dir, loc)
         workspace = name,
         cwd = project_dir,
     }
-    local editor_pane = build_pane:split {
-        direction = 'Right',
-        size = 0.8,
-        cwd = project_dir,
-    }
-    editor_pane:send_text 'activate\nnvim .\nclear\n'
     build_pane:send_text 'activate\nclear\n'
 end
 
