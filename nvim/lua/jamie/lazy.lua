@@ -178,7 +178,12 @@ require("lazy").setup({
       }
     },
     -- better escape
-    {"max397574/better-escape.nvim"},
+    {
+      "max397574/better-escape.nvim",
+      config = function()
+        require("better_escape").setup()
+      end,
+    },
     -- oil
     {"stevearc/oil.nvim"},
     -- neotest

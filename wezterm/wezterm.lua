@@ -25,7 +25,7 @@ function RandomBackground()
         t[i] = filename
     end
     pfile:close()
-    local rand = math.random(1, #t)
+    local rand = math.random(#t)
     return directory .. t[rand-1]
 end
 
@@ -114,18 +114,19 @@ if OnUnix() then
     config.window_background_opacity = 1
     config.text_background_opacity = 1
 
-    --config.window_background_image =  "Users/jamieplace/Pictures/backgrounds/dune.png"
-    --config.window_background_image_hsb = {
-    --    -- Darken the background image by reducing it to 1/3rd
-    --    brightness = 0.05,
+    --config.window_background_image =  "/Users/jamieplace/Pictures/HD-wallpaper-kirby-sleeping.jpg"
+    config.window_background_image = RandomBackground()
+    config.window_background_image_hsb = {
+        -- Darken the background image by reducing it to 1/3rd
+        brightness = 0.025,
 
-    --    -- You can adjust the hue by scaling its value.
-    --    -- a multiplier of 1.0 leaves the value unchanged.
-    --    hue = 1,
+        -- You can adjust the hue by scaling its value.
+        -- a multiplier of 1.0 leaves the value unchanged.
+        hue = 1,
 
-    --    -- You can adjust the saturation also.
-    --    saturation = 0.1,
-    --}
+        -- You can adjust the saturation also.
+        saturation = 0.1,
+    }
 end
 
 for i = 1, 8 do
