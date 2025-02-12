@@ -38,7 +38,6 @@ export APPLE_SSH_ADD_BEHAVIOR="macos"
 
 
 
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -96,6 +95,10 @@ fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
+
+# set lua path
+export LUA_PATH="$HOME/.luarocks/share/lua/5.4/?.lua;$HOME/.luarocks/share/lua/5.3/?/init.lua;$LUA_PATH"
+export LUA_CPATH="$HOME/.luarocks/lib/lua/5.4/?.so;$LUA_CPATH"
 
 # set ssh keys
 ssh-add -K $HOME/.ssh/id_ed25519 > /dev/null 2>&1
