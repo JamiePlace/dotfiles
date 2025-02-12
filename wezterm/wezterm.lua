@@ -1,4 +1,3 @@
-require 'workspaces'
 -- The only required line is this one.
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
@@ -22,7 +21,9 @@ function RandomBackground()
     local pfile = popen('ls -a "'..directory..'"')
     for filename in pfile:lines() do
         i = i + 1
-        t[i] = filename
+        if filename ~= nil or filename ~= directory  or filename ~= ".." or  filename ~= "." then
+            t[i] = filename
+        end
     end
     pfile:close()
     local rand = math.random(#t)

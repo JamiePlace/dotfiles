@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
+local mux = wezterm.mux
 local tools = require 'tools'
 local workspace = require 'project_workspaces'
 
@@ -11,7 +12,89 @@ ConfigPath = function ()
     end
 end
 
+local function base_dir(path)
+    local home = os.getenv("HOME")
+    path = path:gsub("^~", home)
+    return path
+end
+
+local function list_directories_with_pyproject(path)
+    local dirs_with_pyproject = {}
+
+    -- Read the contents of the base directory
+    local entries = wezterm.read_dir(path)
+    print("Entries: ", entries)
+    if not entries then
+        return dirs_with_pyproject
+    end
+
+    for _, entry in ipairs(entries) do
+        local full_path = entry
+        wezterm.log_info("Full Path: " .. full_path)
+        local success, stdout, stderr = wezterm.run_child_process({"stat", "-F", full_path})
+        wezterm.log_info("Attributes: ", success, stdout, stderr)
+        wezterm.log_info("STDOUT: " .. stdout:sub(1, 1))
+        if success and stdout:sub(1,1) == "d" then
+            local pyproject_path = full_path .. "/pyproject.toml"
+            local file = io.open(pyproject_path, "r")
+            if file then
+                table.insert(dirs_with_pyproject, full_path)
+                file:close()
+            end
+        end
+    end
+
+    return dirs_with_pyproject
+end
+
+local function CreateWorkspace(name)
+    return mux.create_workspace {
+        name = name,
+    }
+end
+
+
 local keys = {
+    {
+        key = '?',
+        mods = 'CTRL|SHIFT',
+        action = wezterm.action_callback(function(window, pane)
+            local base_dir_path = base_dir("~/projects/")
+            local project_dirs = list_directories_with_pyproject(base_dir_path)
+            wezterm.log_info("Project Directories: ", project_dirs)
+            local choices = {}
+            for _, dir in ipairs(project_dirs) do
+                table.insert(choices, { label = dir:gsub(base_dir_path, ""), id = dir})
+            end
+
+            window:perform_action(
+                act.InputSelector({
+                    title = "🎨 Pick a Project!",
+                    choices = choices,
+                    fuzzy = true,
+
+                    action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
+                        inner_window:perform_action(
+                            act.SwitchToWorkspace({
+								name = label,
+								spawn = {
+									label = "Workspace: " .. label,
+									cwd = id,
+								},
+							}),
+                            inner_pane
+                        )
+                    end),
+                }),
+                pane
+            )
+        end)
+    },
+    {
+        key = '|',
+        mods = 'CTRL|SHIFT',
+        action = wezterm.action.ShowDebugOverlay,
+    },
 	-- This will create a new split and run your default program inside it
 	{
 		key = "'",
@@ -105,9 +188,7 @@ local keys = {
                     window:perform_action(
                     act.SwitchToWorkspace {
                         name = line,
-                    },
-                    pane
-                    )
+                    }, pane)
                 end
             end),
         },
