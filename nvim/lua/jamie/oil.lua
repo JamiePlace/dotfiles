@@ -3,6 +3,16 @@ require("oil").setup({
         -- Show files and directories that start with "."
         show_hidden = true,
     },
+    lsp_file_methods = {
+        -- Enable or disable LSP file operations
+        enabled = true,
+        -- Time to wait for LSP file operations to complete before skipping
+        -- wait 20 seconds
+        timeout_ms = 20000,
+        -- Set to true to autosave buffers that are updated with LSP willRenameFiles
+        -- Set to "unmodified" to only save unmodified buffers
+        autosave_changes = false,
+    },
     keymaps = {
         ["g?"] = "actions.show_help",
         ["<CR>"] = "actions.select",

@@ -70,16 +70,43 @@ end
 
 require('lspconfig').pyright.setup {
     settings = {
+        pyright = {
+          -- Using Ruff's import organizer
+          disableOrganizeImports = true,
+        },
         python = {
             analysis = {
                 autoSearchPaths = true,
-                diagnosticMode = "off",
-                useLibraryCodeForTypes = true
+                diagnosticMode = "standard",
+                useLibraryCodeForTypes = true,
+                ignore = {".venv", ".git"},
             }
         }
     },
     capabilities = capabilities
 }
+
+--require("lspconfig").basedpyright.setup {
+--    settings = {
+--        basedpyright = {
+--            disableOrganizeImports = true,
+--            openFilesOnly = true,
+--            analysis = {
+--                ignore = {".venv", ".git"},
+--                autoSearchPaths = true,
+--                diagnosticMode = "openFilesOnly",
+--                useLibraryCodeForTypes = true,
+--                inlayHints = {
+--                    variableTypes = false,
+--                    functionReturnTypes = true,
+--                    genericTypes = false,
+--                    callArgumentNames = true
+--                }
+--            }
+--        }
+--    }
+--}
+
 require('lspconfig').lua_ls.setup({})
 
 require('lspconfig').r_language_server.setup({
