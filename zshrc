@@ -101,8 +101,8 @@ export LUA_PATH="$HOME/.luarocks/share/lua/5.4/?.lua;$HOME/.luarocks/share/lua/5
 export LUA_CPATH="$HOME/.luarocks/lib/lua/5.4/?.so;$LUA_CPATH"
 
 # set ssh keys
-ssh-add -K $HOME/.ssh/id_ed25519 > /dev/null 2>&1
-ssh-add -K $HOME/.ssh/id_rsa > /dev/null 2>&1
-ssh-add -K $HOME/.ssh/gitkraken_rsa > /dev/null 2>&1
+ssh-add $HOME/.ssh/id_ed25519 > /dev/null 2>&1
+ssh-add $HOME/.ssh/id_rsa > /dev/null 2>&1
+ssh-add $HOME/.ssh/gitkraken_rsa > /dev/null 2>&1
 
 . "$HOME/.cargo/env"
