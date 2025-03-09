@@ -14,32 +14,61 @@ end
 
 local function base_dir(path)
     local home = os.getenv("HOME")
+    if not home then
+        home = "\\\\wsl.localhost\\Ubuntu\\home\\jamie"
+    end
     path = path:gsub("^~", home)
     return path
 end
 
 local function list_directories_with_pyproject(path)
+    local home = os.getenv("HOME")
     local dirs_with_pyproject = {}
 
     -- Read the contents of the base directory
     local entries = wezterm.read_dir(path)
     print("Entries: ", entries)
     if not entries then
+        print("No entries found")
         return dirs_with_pyproject
     end
 
     for _, entry in ipairs(entries) do
         local full_path = entry
+        wezterm.log_info("****************")
         wezterm.log_info("Full Path: " .. full_path)
-        local success, stdout, stderr = wezterm.run_child_process({"stat", "-F", full_path})
+        local success, stdout, stderr
+        if not home then
+            success, stdout, stderr = wezterm.run_child_process({"stat",  full_path})
+        else
+            success, stdout, stderr = wezterm.run_child_process({"stat", "-F", full_path})
+        end
         wezterm.log_info("Attributes: ", success, stdout, stderr)
-        wezterm.log_info("STDOUT: " .. stdout:sub(1, 1))
-        if success and stdout:sub(1,1) == "d" then
-            local pyproject_path = full_path .. "/pyproject.toml"
-            local file = io.open(pyproject_path, "r")
-            if file then
-                table.insert(dirs_with_pyproject, full_path)
-                file:close()
+        wezterm.log_info("STDOUT: " .. stdout)
+        if not home then
+            local pattern = "[d-][r-][w-][x-][r-][w-][x-][r-][w-][x-]"
+            for match in string.gmatch(stdout, pattern) do
+                wezterm.log_info("Match: ", match)
+                if success and match:sub(1,1) == "d" then
+                    wezterm.log_info("Directory: ", full_path)
+                    local pyproject_path = full_path .. "/pyproject.toml"
+                    local file = io.open(pyproject_path, "r")
+                    if file then
+                        table.insert(dirs_with_pyproject, full_path)
+                        file:close()
+                    end
+                end
+            end
+        else
+            wezterm.log_info("STDOUT: " .. stdout:sub(1, 1))
+            if success and stdout:sub(1, 1) == "d" then
+                wezterm.log_info("Directory: ", full_path)
+                local pyproject_path = full_path .. "/pyproject.toml"
+                local file = io.open(pyproject_path, "r")
+                if file then
+                    table.insert(dirs_with_pyproject, full_path)
+                    file:close()
+                end
             end
         end
     end
@@ -47,24 +76,21 @@ local function list_directories_with_pyproject(path)
     return dirs_with_pyproject
 end
 
-local function CreateWorkspace(name)
-    return mux.create_workspace {
-        name = name,
-    }
-end
-
-
 local keys = {
     {
         key = '?',
         mods = 'CTRL|SHIFT',
         action = wezterm.action_callback(function(window, pane)
             local base_dir_path = base_dir("~/projects/")
+            print("Base Dir Path: ", base_dir_path)
             local project_dirs = list_directories_with_pyproject(base_dir_path)
             wezterm.log_info("Project Directories: ", project_dirs)
             local choices = {}
             for _, dir in ipairs(project_dirs) do
-                table.insert(choices, { label = dir:gsub(base_dir_path, ""), id = dir})
+                print("Dir: ", dir)
+                if dir~=nil then
+                    table.insert(choices, { label = dir:gsub(base_dir_path, ""), id = dir})
+                end
             end
 
             window:perform_action(
@@ -74,16 +100,18 @@ local keys = {
                     fuzzy = true,
 
                     action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
-                        inner_window:perform_action(
-                            act.SwitchToWorkspace({
-								name = label,
-								spawn = {
-									label = "Workspace: " .. label,
-									cwd = id,
-								},
-							}),
-                            inner_pane
-                        )
+                        if label~=nil then
+                            inner_window:perform_action(
+                                act.SwitchToWorkspace({
+                                    name = label,
+                                    spawn = {
+                                        label = "Workspace: " .. label,
+                                        cwd = id,
+                                    },
+                                }),
+                                inner_pane
+                            )
+                        end
                     end),
                 }),
                 pane
@@ -220,62 +248,32 @@ local keys = {
                     -- execute 'sed' shell command to replace the line 
                     -- responsible of colorscheme in my config
                     action = wezterm.action_callback(function(inner_window, inner_pane, _, label)
-                        inner_window:perform_action(
-                            act.SpawnCommandInNewTab({
-                                args = {
-                                    "sed",
-                                    "-i",
-                                    "",
-                                    's/config.color_scheme =.*/config.color_scheme = "' .. label .. '"/',
-                                    '/Users/jamieplace/.config/wezterm/wezterm.lua',
-                                },
-                            }),
-                            inner_pane
-                        )
-                    end),
-                }),
-                pane
-            )
-        end)
-    },
-    {
-        key = 'T',
-        mods = 'ALT|SHIFT',
-        action = wezterm.action_callback(function(window, pane)
-            -- get builting color schemes
-            local schemes = wezterm.get_builtin_color_schemes()
-            local choices = {}
-
-            -- populate theme names in choices list
-            for key, _ in pairs(schemes) do
-                table.insert(choices, { label = tostring(key) })
-            end
-
-            -- sort choices list
-            table.sort(choices, function(c1, c2)
-                return c1.label < c2.label
-            end)
-
-            window:perform_action(
-                act.InputSelector({
-                    title = "🎨 Pick a Theme!",
-                    choices = choices,
-                    fuzzy = true,
-
-                    -- execute 'sed' shell command to replace the line 
-                    -- responsible of colorscheme in my config
-                    action = wezterm.action_callback(function(inner_window, inner_pane, _, label)
-                        inner_window:perform_action(
-                            act.SpawnCommandInNewTab({
-                                args = {
-                                    "sed",
-                                    "-i",
-                                    's/config.color_scheme =.*/config.color_scheme = "' .. label .. '"/',
-                                    "/home/jamie/.config/wezterm/wezterm.lua",
-                                },
-                            }),
-                            inner_pane
-                        )
+                        if not os.getenv("HOME") then
+                            inner_window:perform_action(
+                                act.SpawnCommandInNewTab({
+                                    args = {
+                                        "sed",
+                                        "-i",
+                                        's/config.color_scheme =.*/config.color_scheme = "' .. label .. '"/',
+                                        "/home/jamie/.config/wezterm/wezterm.lua",
+                                    },
+                                }),
+                                inner_pane
+                            )
+                        else
+                            inner_window:perform_action(
+                                act.SpawnCommandInNewTab({
+                                    args = {
+                                        "sed",
+                                        "-i",
+                                        "",
+                                        's/config.color_scheme =.*/config.color_scheme = "' .. label .. '"/',
+                                        '/Users/jamieplace/.config/wezterm/wezterm.lua',
+                                    },
+                                }),
+                                inner_pane
+                            )
+                        end
                     end),
                 }),
                 pane
