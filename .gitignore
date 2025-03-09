@@ -2,3 +2,5 @@ github-copilot/hosts.json
 uv/*
 graphite/*
 ipython/profile_default/history.sqlite
+lazygit/state.yml
+go/telemetry/*
