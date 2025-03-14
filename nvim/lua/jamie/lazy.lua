@@ -104,10 +104,10 @@ require("lazy").setup({
         'nvim-telescope/telescope.nvim', tag = '0.1.5',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
-			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 		}
     },
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     -- autopairs
     {
         "windwp/nvim-autopairs", event="InsertEnter", opts = {},
@@ -185,7 +185,11 @@ require("lazy").setup({
       end,
     },
     -- oil
-    {"stevearc/oil.nvim"},
+	{
+	  'stevearc/oil.nvim',
+	  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+	  lazy = false,
+	},
     -- neotest
     {
         "nvim-neotest/neotest",
