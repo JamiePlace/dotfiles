@@ -18,21 +18,33 @@ function OnUnix()
 end
 
 function RandomBackground()
-    local directory = "Users/jamieplace/Pictures/backgrounds/"
-    local i, t, popen = 0, {}, io.popen
-    local pfile = popen('ls -a "'..directory..'"')
-    if not pfile then
-        return nil
-    end
-    for filename in pfile:lines() do
-        i = i + 1
-        if filename ~= nil or filename ~= directory  or filename ~= ".." or  filename ~= "." then
-            t[i] = filename
+	local directory = "Users/jamieplace/Pictures/backgrounds/"
+	local i, t, popen = 0, {}, io.popen
+	local pfile = popen('ls -a "'..directory..'"')
+	if pfile == nil then
+		return "nothing"
+	end
+	for filename in pfile:lines() do
+		if filename == "." then
+			goto continue
+		end
+
+		if filename == ".." then
+			goto continue
+		end
+
+        if filename == ".DS_Store" then
+            goto continue
         end
-    end
-    pfile:close()
-    local rand = math.random(#t)
-    return directory .. t[rand]
+		i = i + 1
+		if filename ~= nil or filename ~= directory  or filename ~= ".." or  filename ~= "." then
+			t[i] = filename
+		end
+		::continue::
+	end
+	pfile:close()
+	local rand = math.random(#t)
+	return directory .. t[rand]
 end
 
 if not OnUnix() then
@@ -42,8 +54,7 @@ if not OnUnix() then
     config.default_domain = 'WSL:Ubuntu'
     wezterm.home_dir = '/home/jamie/'
 end
-
-config.color_scheme = "Vs Code Dark+ (Gogh)"
+config.color_scheme = "VSCodeDark+ (Gogh)"
 local process_icons = {
   ['docker'] = wezterm.nerdfonts.linux_docker,
   ['docker-compose'] = wezterm.nerdfonts.linux_docker,
