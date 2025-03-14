@@ -105,4 +105,4 @@ ssh-add $HOME/.ssh/id_ed25519 > /dev/null 2>&1
 ssh-add $HOME/.ssh/id_rsa > /dev/null 2>&1
 ssh-add $HOME/.ssh/gitkraken_rsa > /dev/null 2>&1
 
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
