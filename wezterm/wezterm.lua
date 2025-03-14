@@ -8,6 +8,8 @@ local config = {}
 local mouse_bindings = {}
 local launch_menu = {}
 
+require "workspaces"
+
 function OnUnix()
     if (package.config:sub(1,1)) == ("\\") then
         return false
@@ -19,6 +21,9 @@ function RandomBackground()
     local directory = "Users/jamieplace/Pictures/backgrounds/"
     local i, t, popen = 0, {}, io.popen
     local pfile = popen('ls -a "'..directory..'"')
+    if not pfile then
+        return nil
+    end
     for filename in pfile:lines() do
         i = i + 1
         if filename ~= nil or filename ~= directory  or filename ~= ".." or  filename ~= "." then
@@ -27,7 +32,7 @@ function RandomBackground()
     end
     pfile:close()
     local rand = math.random(#t)
-    return directory .. t[rand-1]
+    return directory .. t[rand]
 end
 
 if not OnUnix() then
@@ -37,7 +42,8 @@ if not OnUnix() then
     config.default_domain = 'WSL:Ubuntu'
     wezterm.home_dir = '/home/jamie/'
 end
-config.color_scheme = "Rosé Pine (Gogh)"
+
+config.color_scheme = "Vs Code Dark+ (Gogh)"
 local process_icons = {
   ['docker'] = wezterm.nerdfonts.linux_docker,
   ['docker-compose'] = wezterm.nerdfonts.linux_docker,

@@ -21,16 +21,55 @@ local function base_dir(path)
     return path
 end
 
-local function list_directories_with_pyproject(path)
+local process_icons = {
+    ['.docker'] = wezterm.nerdfonts.linux_docker,
+    ['node'] = wezterm.nerdfonts.mdi_hexagon,
+    ['go.mod'] = wezterm.nerdfonts.seti_go,
+    ['.venv'] = '',
+    ['pyrpoject.toml'] = '',
+    ['zsh'] = wezterm.nerdfonts.dev_terminal,
+    ['cargo'] = wezterm.nerdfonts.dev_rust,
+    ['.git'] = wezterm.nerdfonts.dev_git,
+    ['.lua'] = wezterm.nerdfonts.seti_lua,
+}
+
+local function contains(table, element)
+    for _, value in pairs(table) do
+        if string.find(value, element) then
+            return true
+        end
+    end
+    return false
+end
+
+local function dir_symbol(path, base_dir_path)
+    local entries = wezterm.read_dir(path)
+    local symbols = {}
+    local seen_process_icons = {}
+    for key, value in pairs(process_icons) do
+        print("Key: ", key)
+        if contains(entries, key) then
+            if not seen_process_icons[key] then
+                table.insert(symbols, process_icons[key])
+                seen_process_icons[key] = true
+            end
+        end
+    end
+    print("Path: ", path)
+    print("Symbols: ", symbols)
+    return "[" .. table.concat(symbols, ", ") .. "]" .. " " .. path:gsub(base_dir_path, "")
+end
+
+local function list_directories_with_git(path)
     local home = os.getenv("HOME")
-    local dirs_with_pyproject = {}
+    local dirs_with_git = {}
 
     -- Read the contents of the base directory
     local entries = wezterm.read_dir(path)
     print("Entries: ", entries)
     if not entries then
         print("No entries found")
-        return dirs_with_pyproject
+        return dirs_with_git
     end
 
     for _, entry in ipairs(entries) do
@@ -51,10 +90,10 @@ local function list_directories_with_pyproject(path)
                 wezterm.log_info("Match: ", match)
                 if success and match:sub(1,1) == "d" then
                     wezterm.log_info("Directory: ", full_path)
-                    local pyproject_path = full_path .. "/pyproject.toml"
+                    local pyproject_path = full_path .. "/.git/HEAD"
                     local file = io.open(pyproject_path, "r")
                     if file then
-                        table.insert(dirs_with_pyproject, full_path)
+                        table.insert(dirs_with_git, full_path)
                         file:close()
                     end
                 end
@@ -63,17 +102,17 @@ local function list_directories_with_pyproject(path)
             wezterm.log_info("STDOUT: " .. stdout:sub(1, 1))
             if success and stdout:sub(1, 1) == "d" then
                 wezterm.log_info("Directory: ", full_path)
-                local pyproject_path = full_path .. "/pyproject.toml"
+                local pyproject_path = full_path .. "/.git/HEAD"
                 local file = io.open(pyproject_path, "r")
                 if file then
-                    table.insert(dirs_with_pyproject, full_path)
+                    table.insert(dirs_with_git, full_path)
                     file:close()
                 end
             end
         end
     end
 
-    return dirs_with_pyproject
+    return dirs_with_git
 end
 
 local keys = {
@@ -83,13 +122,14 @@ local keys = {
         action = wezterm.action_callback(function(window, pane)
             local base_dir_path = base_dir("~/projects/")
             print("Base Dir Path: ", base_dir_path)
-            local project_dirs = list_directories_with_pyproject(base_dir_path)
+            --local project_dirs = list_directories_with_pyproject(base_dir_path)
+            local project_dirs = list_directories_with_git(base_dir_path)
             wezterm.log_info("Project Directories: ", project_dirs)
             local choices = {}
             for _, dir in ipairs(project_dirs) do
                 print("Dir: ", dir)
                 if dir~=nil then
-                    table.insert(choices, { label = dir:gsub(base_dir_path, ""), id = dir})
+                    table.insert(choices, { label = dir_symbol(dir, base_dir_path), id = dir})
                 end
             end
 
