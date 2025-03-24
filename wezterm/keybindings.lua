@@ -22,7 +22,8 @@ local function base_dir(path)
 end
 
 local process_icons = {
-    ['.docker'] = wezterm.nerdfonts.linux_docker,
+    ['.dockerfile'] = wezterm.nerdfonts.linux_docker,
+    ['Dockerfile'] = wezterm.nerdfonts.linux_docker,
     ['node'] = wezterm.nerdfonts.mdi_hexagon,
     ['go.mod'] = wezterm.nerdfonts.seti_go,
     ['.venv'] = '',
