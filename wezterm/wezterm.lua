@@ -54,7 +54,7 @@ if not OnUnix() then
     config.default_domain = 'WSL:Ubuntu'
     wezterm.home_dir = '/home/jamie/'
 end
-config.color_scheme = "VSCodeDark+ (Gogh)"
+config.color_scheme = "Tokyo Night (Gogh)"
 local process_icons = {
   ['docker'] = wezterm.nerdfonts.linux_docker,
   ['docker-compose'] = wezterm.nerdfonts.linux_docker,
@@ -129,22 +129,22 @@ if OnUnix() then
     config.initial_rows = 48
     config.initial_cols = 120
     config.font_size = 16
-    config.window_background_opacity = 1
-    config.text_background_opacity = 1
+    --config.window_background_opacity = 1
+    --config.text_background_opacity = 1
 
-    --config.window_background_image =  "/Users/jamieplace/Pictures/HD-wallpaper-kirby-sleeping.jpg"
-    config.window_background_image = RandomBackground()
-    config.window_background_image_hsb = {
-        -- Darken the background image by reducing it to 1/3rd
-        brightness = 0.025,
+    ----config.window_background_image =  "/Users/jamieplace/Pictures/HD-wallpaper-kirby-sleeping.jpg"
+    --config.window_background_image = RandomBackground()
+    --config.window_background_image_hsb = {
+    --    -- Darken the background image by reducing it to 1/3rd
+    --    brightness = 0.025,
 
-        -- You can adjust the hue by scaling its value.
-        -- a multiplier of 1.0 leaves the value unchanged.
-        hue = 1,
+    --    -- You can adjust the hue by scaling its value.
+    --    -- a multiplier of 1.0 leaves the value unchanged.
+    --    hue = 1,
 
-        -- You can adjust the saturation also.
-        saturation = 0.1,
-    }
+    --    -- You can adjust the saturation also.
+    --    saturation = 0.1,
+    --}
 end
 
 for i = 1, 8 do

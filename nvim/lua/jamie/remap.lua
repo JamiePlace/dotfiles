@@ -43,32 +43,10 @@ vim.keymap.set("n", "<C-right>", ":vertical resize +2<CR>", { silent = true })
 -- jump to previous buffer
 vim.keymap.set("n", "<leader>ll", ":b#<CR>", { silent = true })
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', function() builtin.find_files({path_display = { "truncate" }}) end, {})
-vim.keymap.set('n', '<leader>ff', function() builtin.find_files({path_display = { "truncate" }}) end, {})
-vim.keymap.set('n', '<leader>pws', function() local word = vim.fn.expand("<cword>") builtin.grep_string({ search = word }) end)
-vim.keymap.set('n', '<leader>pWs', function() local word = vim.fn.expand("<cWORD>") builtin.grep_string({ search = word }) end)
-vim.keymap.set('n', '<leader>gg', function() builtin.grep_string({ search = vim.fn.input("Grep > ") }) end) vim.keymap.set('n', '<leader>pg', function() builtin.live_grep({path_display = { "truncate" }}) end, {})
-vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
 --vim.keymap.set('n', '<leader>pr',function() builtin.lsp_references({show_line=false, path_display = { "truncate" }}) end, { noremap = true, silent = true})
--- trouble
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-vim.keymap.set("n", "<leader>pr", function() require("trouble").toggle("lsp_references") end)
 -- open terminal
 vim.keymap.set("n", "<leader>rt", ":vsplit<CR><C-w>l:te<CR>")
 vim.keymap.set("n", "<leader>bt", ":vsplit<CR><C-w>l:te<CR>")
--- fugitive
-vim.keymap.set("n", "<leader>gs", ":G<CR>")
-vim.keymap.set("n", "<C-G>", ":G commit<CR>")
-vim.keymap.set("n", "<leader>ga", ":G add .<CR>")
-vim.keymap.set("n", "<leader>gb", ":G blame<CR>")
-vim.keymap.set("n", "<leader>gd", ":G diff<CR>")
-vim.keymap.set("n", "<leader>gD", ":G difftool<CR>")
 
 
 -- my repl solution
@@ -97,14 +75,6 @@ vim.keymap.set('t', "<C-L>", term_nav("l"), { noremap = true, silent = true })
 vim.keymap.set('t', "<C-B>", term_prev_buf(), { noremap = true, silent = true })
 -- lsp restart
 vim.keymap.set('n', "<leader>lr", ":LspRestart<CR>")
--- docstrings
--- Generate comment for current line
-vim.keymap.set('n', '<Leader>ds', '<Plug>(doge-generate)')
--- TODO comments
-vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
-vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
-vim.keymap.set("n", "<leader>tt", function() vim.cmd(":TodoTrouble") end, { desc = "All todos in project" })
-
 -- R
 -- assignment
 vim.keymap.set("i", "<C-[>", "<-", { desc = "Assignment Operator" })
