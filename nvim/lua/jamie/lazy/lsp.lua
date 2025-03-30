@@ -10,13 +10,13 @@ return {
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
-        "j-hui/fidget.nvim",
+        "saadparwaiz1/cmp_luasnip"
     },
 
     config = function()
         require("conform").setup({
             formatters_by_ft = {
+                python = { "isort", "black" },
             }
         })
         local cmp = require('cmp')
@@ -57,7 +57,6 @@ return {
             return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
         end
 
-        require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
@@ -79,7 +78,7 @@ return {
                             local path = get_python_path(client.config.root_dir, false)
                             client.config.settings.python.pythonPath = path
                         end,
-                        cmd = { get_python_path(vim.fn.getcwd(), true) .. "/pyright-langserver", "--stdio" },
+                        cmd = { get_python_path(vim.fn.getcwd(), true) .. "/pyright-langserver", "--stdio", "--threads 4" },
                         capabilities = capabilities,
                         settings = {
                             python = {
@@ -87,9 +86,9 @@ return {
                                     autoSearchPaths = true,
                                     diagnosticMode = "openFilesOnly",
                                     useLibraryCodeForTypes = true,
-                                    typeCheckingMode = "standard"
+                                    typeCheckingMode = "off"
                                 }
-                            }
+                            },
                         }
                     }
                 end,
