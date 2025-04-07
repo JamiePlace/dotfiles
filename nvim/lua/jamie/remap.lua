@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<C-a>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
+vim.keymap.set("i", "<C-P>", '<C-R> "', { desc = "Paste from last yank" })
 
 vim.keymap.set("n", ",", ";")
 vim.keymap.set("n", ";", ":")

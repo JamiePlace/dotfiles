@@ -8,6 +8,7 @@ if [ -x "$BREW" -a -z "$HOMEBREW_PREFIX" ]; then
   eval "$($BREW shellenv)"
   export PATH=$PREV_PATH${PATH+:$PATH}
 fi
+export PATH="/usr/local/opt/curl/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh

@@ -78,7 +78,7 @@ return {
                             local path = get_python_path(client.config.root_dir, false)
                             client.config.settings.python.pythonPath = path
                         end,
-                        cmd = { get_python_path(vim.fn.getcwd(), true) .. "/pyright-langserver", "--stdio", "--threads 4" },
+                        cmd = { get_python_path(vim.fn.getcwd(), true) .. "/pyright-langserver", "--stdio" },
                         capabilities = capabilities,
                         settings = {
                             python = {

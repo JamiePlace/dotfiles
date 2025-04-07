@@ -10,16 +10,24 @@ local function home()
 end
 
 local
+    
 function default()
     local tab, build_pane, window = mux.spawn_window {
-        workspace = 'home',
+        workspace = '🏠 home',
         cwd = home(),
     }
 end
 
 local function config()
     local tab, build_pane, window = mux.spawn_window {
-        workspace = 'config',
+        workspace = '🔧 config',
+        cwd = wezterm.home_dir .. "/.config",
+    }
+end
+
+local function projects()
+    local tab, build_pane, window = mux.spawn_window {
+        workspace = '📚 projects',
         cwd = wezterm.home_dir .. "/.config",
     }
 end
@@ -29,5 +37,7 @@ wezterm.on('gui-startup', function(cmd)
     default()
     -- config
     config()
+    -- projects
+    projects()
     mux.set_active_workspace 'home'
 end)

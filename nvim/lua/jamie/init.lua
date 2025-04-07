@@ -1,5 +1,6 @@
 require("jamie.set")
 require("jamie.remap")
+require("jamie.fetch_aws_login")
 require("jamie.lazy_init")
 
 local augroup = vim.api.nvim_create_augroup
@@ -35,6 +36,8 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
         vim.keymap.set("n", "<leader>fm", ":Format", opts)
+        -- set bedrock keys
+        vim.keymap.set("n", "<leader>sk", function() SetBedrockKeys(vim.fn.input("Profile> ")) end, opts)
     end
 })
 
