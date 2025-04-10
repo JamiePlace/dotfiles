@@ -83,3 +83,8 @@ vim.keymap.set("i", "<C-[>", "<-", { desc = "Assignment Operator" })
 vim.keymap.set("i", "<C-]>", "|>", { desc = "Pipe Operator" })
 -- function docstring
 vim.keymap.set("i", "<C-\\>", "#' ", { desc = "Pipe Operator" })
+-- 
+--
+--
+-- obsidian new note from template
+vim.keymap.set("n", "<leader>nf", "<CMD>ObsidianTemplate<CR>", { desc = "Insert Template" })

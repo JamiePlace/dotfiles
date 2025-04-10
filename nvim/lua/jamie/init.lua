@@ -41,6 +41,26 @@ autocmd('LspAttach', {
     end
 })
 
+autocmd('BufWinEnter', {
+    pattern = { '*.md' },
+    callback = function()
+        vim.opt.colorcolumn = ''
+        vim.opt.wrap = true
+        vim.opt.breakindent = true
+        vim.opt.showbreak = ""
+        vim.opt.linebreak = true
+    end,
+})
+autocmd({ 'BufWinLeave' }, {
+    pattern = { '*.md' },
+    callback = function()
+        vim.opt.colorcolumn = '90'
+        vim.opt.textwidth = 90
+        vim.opt.wrap = false
+        vim.opt.linebreak = false
+    end,
+})
+
 -- vim.g.netrw_browse_split = 0
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_winsize = 25
