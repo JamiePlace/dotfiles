@@ -108,7 +108,7 @@ mouse_bindings = {
 }
 
 --- Default config settings
-config.font = wezterm.font('Fira Code')
+config.font = wezterm.font('Hack Nerd Font Mono')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'SteadyUnderline'
 config.disable_default_key_bindings = true
@@ -158,16 +158,6 @@ end
 config.tab_bar_at_bottom = true
 -- remove ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
--- ssh config
-config.ssh_domains = {
-    {
-        name = 'JP-Analysis',
-        remote_address = 'ec2-3-144-103-177.us-east-2.compute.amazonaws.com',
-        username = 'ubuntu',
-        ssh_option = {
-            identityfile = '/Users/jamieplace/.ssh/ec2-key.pem',
-        },
-    },
-}
+
 return config
 
