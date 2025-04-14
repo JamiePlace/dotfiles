@@ -3,6 +3,13 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<C-a>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
+-- proportional symbol
+vim.keymap.set("i", "<C-a>", "∝", { desc = "proportional" })
+vim.keymap.set("i", "<C-d>", function() 
+    local current_date = os.date("%Y-%m-%d")
+    vim.api.nvim_put({current_date}, 'c', true, true)
+end, { desc = "current date" })
+
 vim.keymap.set("i", "<C-P>", '<C-R> "', { desc = "Paste from last yank" })
 
 vim.keymap.set("n", ",", ";")
