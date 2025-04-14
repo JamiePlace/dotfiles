@@ -108,7 +108,8 @@ mouse_bindings = {
 }
 
 --- Default config settings
-config.font = wezterm.font('Hack Nerd Font Mono')
+--config.font = wezterm.font('Hack Nerd Font Mono')
+config.font = wezterm.font('Cantarell Mono')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'SteadyUnderline'
 config.disable_default_key_bindings = true
@@ -117,35 +118,13 @@ config.mouse_bindings = mouse_bindings
 config.send_composed_key_when_left_alt_is_pressed = true
 config.exit_behavior = 'CloseOnCleanExit'
 config.window_decorations = 'RESIZE'
-if not OnUnix() then
-    config.initial_rows = 50
-    config.initial_cols = 180
-    config.font_size = 13
-    config.window_background_opacity = 1
-    config.text_background_opacity = 1
-end
-
-if OnUnix() then
-    config.initial_rows = 48
-    config.initial_cols = 120
-    config.font_size = 19
-    --config.window_background_opacity = 1
-    --config.text_background_opacity = 1
-
-    ----config.window_background_image =  "/Users/jamieplace/Pictures/HD-wallpaper-kirby-sleeping.jpg"
-    --config.window_background_image = RandomBackground()
-    --config.window_background_image_hsb = {
-    --    -- Darken the background image by reducing it to 1/3rd
-    --    brightness = 0.025,
-
-    --    -- You can adjust the hue by scaling its value.
-    --    -- a multiplier of 1.0 leaves the value unchanged.
-    --    hue = 1,
-
-    --    -- You can adjust the saturation also.
-    --    saturation = 0.1,
-    --}
-end
+config.pane_focus_follows_mouse = true
+config.scrollback_lines = 5000
+config.warn_about_missing_glyphs = false
+config.adjust_window_size_when_changing_font_size = false
+config.initial_rows = 48
+config.initial_cols = 120
+config.font_size = 13
 
 for i = 1, 8 do
   -- CTRL+ALT + number to activate that tab
@@ -155,9 +134,20 @@ for i = 1, 8 do
     action = act.ActivateTab(i - 1),
   })
 end
+config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
+config.switch_to_last_active_tab_when_closing_tab = true
+config.tab_max_width = 32
+config.colors = {
+    tab_bar = {
+        active_tab = {
+            fg_color = '#073642',
+            bg_color = '#2aa198',
+        }
+    }
+}
+--config.tab_bar_at_bottom = true
 -- remove ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
-
 return config
 
