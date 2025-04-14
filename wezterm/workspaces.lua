@@ -40,7 +40,7 @@ end
 local function projects()
     local tab, build_pane, window = mux.spawn_window {
         workspace = '📚 projects',
-        cwd = wezterm.home_dir .. "/.config",
+        cwd = wezterm.home_dir .. "/projects",
     }
 end
 
@@ -51,7 +51,7 @@ wezterm.on('gui-startup', function(cmd)
     config()
     -- obsidian
     Pobsidian()
-    Wobsidian()
+    --Wobsidian()
     -- projects
     projects()
     mux.set_active_workspace 'home'
