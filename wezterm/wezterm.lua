@@ -109,6 +109,9 @@ mouse_bindings = {
 
 --- Default config settings
 config.font = wezterm.font('Hack Nerd Font Mono')
+config.font = wezterm.font_with_fallback {
+  'Fira Code',
+}
 --config.font = wezterm.font('Cantarell')
 config.launch_menu = launch_menu
 config.default_cursor_style = 'SteadyUnderline'
