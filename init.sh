@@ -14,6 +14,7 @@ brew install jless
 brew install csvlens
 brew install zoxide
 brew install starship
+brew install pure
 brew install luarocks
 luarocks install --local luafilesystem
 

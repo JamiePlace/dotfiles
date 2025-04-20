@@ -54,7 +54,7 @@ if not OnUnix() then
     config.default_domain = 'WSL:Ubuntu'
     wezterm.home_dir = '/home/jamie/'
 end
-config.color_scheme = "Rosé Pine (Gogh)"
+config.color_scheme = "One Dark (Gogh)"
 local process_icons = {
   ['docker'] = wezterm.nerdfonts.linux_docker,
   ['docker-compose'] = wezterm.nerdfonts.linux_docker,

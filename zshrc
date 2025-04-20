@@ -58,13 +58,12 @@ alias pip="pip3"
 alias cd="z"
 alias ls="eza"
 alias csv="csvlens"
-alias light="lua $HOME/.config/tools/light_mode.lua"
 alias fvim="fzf | xargs -I{} nvim ./{}"
 alias pre="git add . && git commit -m 'pre-commit formatting'"
 alias fzg="$HOME/.config/tools/fzgrep.sh"
 alias gc="git commit"
 alias ga="git add ."
-
+alias setenv='export $(grep -v "^#" .env | xargs)'
 # lazy git alias
 alias lg="lazygit"
 # fuzzy finding change dir
@@ -93,7 +92,8 @@ if [[ $(uname) != "Darwin" ]]; then
     source <(fzf --zsh)
     eval "$(ssh-agent -s)"
 fi
-eval "$(starship init zsh)"
+autoload -U promptinit; promptinit
+prompt pure
 eval "$(zoxide init zsh)"
 
 
