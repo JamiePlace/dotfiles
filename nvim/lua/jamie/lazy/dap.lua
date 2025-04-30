@@ -15,39 +15,61 @@ return {
     config = function()
         require("dap-python").setup("python")
         require('nvim-dap-repl-highlights').setup()
-        -- read .vscode/launch.json
-        require('dap.ext.vscode').load_launchjs()
-        require("dap").configurations.python = {
-            {
-                type = "python",
-                request = "launch",
-                name = "Launch File: no args",
-                console = "integratedTerminal",
-                program = "${file}",
-                cwd = "${workspaceFolder}",
-            }
-        }
         -- keybindings
         vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
         vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
         vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
 
         vim.fn.sign_define('DapBreakpoint', { text='B', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
-        vim.fn.sign_define('DapBreakpointCondition', { text='C', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+        vim.fn.sign_define('DapBreakpointCondition', { text='cB', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
         vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl= 'DapBreakpoint' })
         vim.fn.sign_define('DapLogPoint', { text='', texthl='DapLogPoint', linehl='DapLogPoint', numhl= 'DapLogPoint' })
         vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })
 
         vim.keymap.set("n", "<leader>br", ':DapToggleBreakpoint<CR>', { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>ebr", ':lua require("dap").set_breakpoint(vim.fn.input("Breakpoint Condition > "))<CR>', { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>db", ':DapLoadLaunchJSON<CR> :DapContinue<CR>', { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>dd", ':DapContinue<CR>', { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>de", ':DapTerminate<CR>', { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>de", function()
+            vim.cmd("vsp dap-eval://python")
+            vim.cmd("vertical resize 40")  -- Adjust the width as desired
+        end, { desc = "Open DAP Eval buffer on the right with width 50" })
+        vim.keymap.set("n", "<leader>dt", ':DapTerminate<CR>', { noremap = true, silent = true })
 
+        vim.keymap.set({'n', 'v'}, '<C-k>', ':lua require("dapui").eval()<CR>',{ noremap = true, silent = true })
+        vim.keymap.set({'n', 'v'}, '<C-k>', function()
+            require("dapui").eval(nil, { enter = true, context = "console" })
+        end, { desc = "Evaluate expression under cursor in console" })
 
-        vim.keymap.set('n', '<C-k>', ':lua require("dapui").eval()<CR>',{ noremap = true, silent = true })
+        require("dapui").setup({
+            layouts = {
+                {
+                    elements = {
+                        -- Exclude "repl" to prevent the REPL window from opening
+                        "scopes",
+                        "breakpoints",
+                        "stacks",
+                    },
+                    size = 40, -- Adjust the size as needed
+                    position = "left", -- Can be "left", "right", "top", or "bottom"
+                },
+                {
+                    elements = {
+                        "console",
+                    },
+                    size = 10,
+                    position = "bottom",
+                }
+            },
+        })
 
-        require("dapui").setup()
+        vim.api.nvim_create_autocmd("BufWinEnter", {
+            pattern = "dap-repl*",
+            callback = function()
+                vim.schedule(function()
+                    vim.cmd("close")  -- Hide it automatically
+                end)
+            end,
+        })
 
         local dap, dapui = require("dap"), require("dapui")
         dap.listeners.before.attach.dapui_config = function()

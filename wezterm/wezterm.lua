@@ -110,7 +110,7 @@ mouse_bindings = {
 --- Default config settings
 config.font = wezterm.font('Hack Nerd Font Mono')
 config.font = wezterm.font_with_fallback {
-  'Fira Code',
+  'JetBrains Mono',
 }
 --config.font = wezterm.font('Cantarell')
 config.launch_menu = launch_menu
@@ -127,7 +127,7 @@ config.warn_about_missing_glyphs = false
 config.adjust_window_size_when_changing_font_size = false
 config.initial_rows = 48
 config.initial_cols = 240
-config.font_size = 14
+config.font_size = 18
 
 for i = 1, 8 do
   -- CTRL+ALT + number to activate that tab

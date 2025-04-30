@@ -12,6 +12,20 @@ ConfigPath = function ()
     end
 end
 
+local function is_nvim(pane)
+    local process_name = pane:get_foreground_process_name()
+    print("proces name:" .. process_name)
+    if process_name == nil then
+        return false
+    end
+    if string.find(process_name, "nvim") then
+        print("NVIM FOUND!")
+        return true
+    end
+    return false
+
+end
+
 local function base_dir(path)
     local home = os.getenv("HOME")
     if not home then
@@ -168,12 +182,36 @@ local keys = {
 	{
 		key = "'",
 		mods = 'CTRL',
-		action = wezterm.action.SplitHorizontal,
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "'", mods = 'CTRL'},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.SplitHorizontal,
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = ";",
 		mods = 'CTRL',
-		action = wezterm.action.SplitVertical,
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = ";", mods = 'CTRL'},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.SplitVertical,
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = '0',
@@ -183,42 +221,154 @@ local keys = {
 	{
 		key = 'h',
 		mods = 'CTRL|SHIFT',
-		action = wezterm.action.ActivatePaneDirection 'Left',
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "w", mods = 'CTRL'},
+                    pane
+                )
+                window:perform_action(
+                    wezterm.action.SendKey { key = "h"},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.ActivatePaneDirection 'Left',
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = 'l',
 		mods = 'CTRL|SHIFT',
-		action = wezterm.action.ActivatePaneDirection 'Right',
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "w", mods = 'CTRL'},
+                    pane
+                )
+                window:perform_action(
+                    wezterm.action.SendKey { key = "l"},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.ActivatePaneDirection 'Right',
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = 'k',
 		mods = 'CTRL|SHIFT',
-		action = wezterm.action.ActivatePaneDirection 'Up',
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "w", mods = 'CTRL'},
+                    pane
+                )
+                window:perform_action(
+                    wezterm.action.SendKey { key = "k"},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.ActivatePaneDirection 'Up',
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = 'j',
 		mods = 'CTRL|SHIFT',
-		action = wezterm.action.ActivatePaneDirection 'Down',
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "w", mods = 'CTRL'},
+                    pane
+                )
+                window:perform_action(
+                    wezterm.action.SendKey { key = "j"},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.ActivatePaneDirection 'Down',
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = 'h',
 		mods = 'ALT|SHIFT',
-		action = wezterm.action.AdjustPaneSize {'Left', 5},
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "h", mods = 'ALT|SHIFT'},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.AdjustPaneSize {'Left', 5},
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = 'l',
 		mods = 'ALT|SHIFT',
-		action = wezterm.action.AdjustPaneSize {'Right', 5},
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "l", mods = 'ALT|SHIFT'},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.AdjustPaneSize {'Right', 5},
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = 'k',
 		mods = 'ALT|SHIFT',
-		action = wezterm.action.AdjustPaneSize {'Up', 5},
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "k", mods = 'ALT|SHIFT'},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.AdjustPaneSize {'Up', 5},
+                    pane
+                )
+            end
+        end),
 	},
 	{
 		key = 'j',
 		mods = 'ALT|SHIFT',
-		action = wezterm.action.AdjustPaneSize {'Down', 5},
+		action = wezterm.action_callback(function(window, pane)
+            if is_nvim(pane) then
+                window:perform_action(
+                    wezterm.action.SendKey { key = "j", mods = 'ALT|SHIFT'},
+                    pane
+                )
+            else
+                window:perform_action(
+                    wezterm.action.AdjustPaneSize {'Down', 5},
+                    pane
+                )
+            end
+        end),
 	},
 	{ key = 'l', mods = 'CTRL|ALT', action = wezterm.action.ShowLauncher },
 	{ key = 't', mods = 'ALT', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },

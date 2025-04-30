@@ -29,3 +29,5 @@ vim.opt.updatetime = 50
 vim.opt.conceallevel = 1
 
 vim.o.winborder = "rounded"
+
+vim.o.splitright = true

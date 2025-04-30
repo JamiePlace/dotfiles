@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-	color = color or "rose-pine"
+	color = color or "onedark"
 	vim.cmd.colorscheme(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -8,6 +8,28 @@ function ColorMyPencils(color)
 end
 
 return {
+    {
+        "navarasu/onedark.nvim",
+        name = "onedark",
+        config = function()
+            require("onedark").setup({
+                transparent = true,
+                term_colors = true,
+                ending_tildes = false,
+                cmp_itemkind_reverse = false,
+                code_style = {
+                    --comments = "italic",
+                    --keywords = "none",
+                    --functions = "none",
+                    --strings = "none",
+                    --variables = "none",
+                },
+                colors = {},
+                highlights = {},
+            })
+            ColorMyPencils()
+        end
+    },
     {
         "ellisonleao/gruvbox.nvim",
         name = "gruvbox",
@@ -71,7 +93,6 @@ return {
                     italic = false,
                 },
             })
-
             ColorMyPencils();
         end
     },

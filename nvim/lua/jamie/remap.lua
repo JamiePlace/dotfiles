@@ -3,9 +3,14 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<C-a>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
+-- if __name__ == "__main__": block
+vim.keymap.set("n", "<leader>m", function()
+  vim.api.nvim_put({ 'if __name__ == "__main__":' }, 'l', true, true)
+end, { desc = "Insert Python main check" })
+
 -- proportional symbol
 vim.keymap.set("i", "<C-a>", "∝", { desc = "proportional" })
-vim.keymap.set("i", "<C-d>", function() 
+vim.keymap.set("i", "<C-d>", function()
     local current_date = os.date("%Y-%m-%d")
     vim.api.nvim_put({current_date}, 'c', true, true)
 end, { desc = "current date" })
@@ -43,11 +48,15 @@ vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", { silent = true })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 vim.keymap.set("i", "<Esc>", "<Esc>")
 vim.keymap.set("i", "<C-c>", "<Esc>")
+
+-- split buffer
+vim.keymap.set("n", "<C-'>", ":vsp<CR>", { silent = true })
+vim.keymap.set("n", "<C-;>", ":sp<CR>", { silent = true })
 -- resize with arrows
-vim.keymap.set("n", "<C-up>", ":resize -2<CR>", { silent = true })
-vim.keymap.set("n", "<C-down>", ":resize +2<CR>", { silent = true })
-vim.keymap.set("n", "<C-left>", ":vertical resize -2<CR>", { silent = true })
-vim.keymap.set("n", "<C-right>", ":vertical resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<M-J>", "2<C-w>-", { silent = true })
+vim.keymap.set("n", "<M-K>", "2<C-w>+", { silent = true })
+vim.keymap.set("n", "<M-H>", "2<C-w><", { silent = true })
+vim.keymap.set("n", "<M-L>", "2<C-w>>", { silent = true })
 -- jump to previous buffer
 vim.keymap.set("n", "<leader>ll", ":b#<CR>", { silent = true })
 
@@ -76,10 +85,6 @@ vim.keymap.set('n', "<leader>]", "yy<C-w>lpa<CR><CR>")
 vim.keymap.set('v', "<leader>]", "y<C-w>lpa<CR><CR>")
 vim.keymap.set('n', "<C-Q>", "yy<C-w>lpa<CR><CR>")
 vim.keymap.set('v', "<C-Q>", "y<C-w>lpa<CR><CR>")
-vim.keymap.set({'n', 'v'}, "<C-H>", "<C-w>h", { silent = true })
-vim.keymap.set('t', "<C-H>", term_nav("h"), { noremap = true, silent = true })
-vim.keymap.set({'n', 'v'}, "<C-L>", "<C-w>l", { silent = true })
-vim.keymap.set('t', "<C-L>", term_nav("l"), { noremap = true, silent = true })
 vim.keymap.set('t', "<C-B>", term_prev_buf(), { noremap = true, silent = true })
 -- lsp restart
 vim.keymap.set('n', "<leader>lr", ":LspRestart<CR>")

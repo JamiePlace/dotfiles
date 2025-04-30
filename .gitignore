@@ -4,3 +4,4 @@ graphite/*
 ipython/profile_default/history.sqlite
 lazygit/state.yml
 go/telemetry/*
+zed/prompts
