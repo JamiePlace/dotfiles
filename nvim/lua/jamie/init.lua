@@ -33,6 +33,8 @@ autocmd('LspAttach', {
     end
 })
 
+
+-- this handles markdown looking nice on enter and leaving
 autocmd('BufWinEnter', {
     pattern = { '*.md' },
     callback = function()
@@ -53,6 +55,15 @@ autocmd({ 'BufWinLeave' }, {
     end,
 })
 
+-- delete terminal buffers when they are closed
+vim.api.nvim_create_autocmd("TermClose", {
+  callback = function(args)
+    local buf = args.buf
+    if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buftype == "term" then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end,
+})
 -- vim.g.netrw_browse_split = 0
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_winsize = 25

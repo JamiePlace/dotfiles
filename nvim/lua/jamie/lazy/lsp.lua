@@ -17,6 +17,7 @@ return {
         require("conform").setup({
             formatters_by_ft = {
                 python = { "ruff_check", "ruff_format"},
+                terraform = { "terraform_fmt" },
             },
             formatters = {
                 ruff_check = {
@@ -28,6 +29,12 @@ return {
                 ruff_format = {
                     command = "ruff",
                     args = { "format", "$FILENAME" },
+                    to_temp_file = true,
+                    stdin = true,
+                },
+                terraform_fmt = {
+                    command = "terraform",
+                    args = { "fmt", "$FILENAME" },
                     to_temp_file = true,
                     stdin = true,
                 },
@@ -78,6 +85,7 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "gopls",
+                "terraformls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -116,6 +124,13 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.gopls.setup {
                         capabilities = capabilities
+                    }
+                end,
+                ["terraformls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.terraformls.setup {
+                        capabilities = capabilities,
+                        cmd = { "terraform-ls", "serve" },
                     }
                 end,
                 ["lua_ls"] = function()

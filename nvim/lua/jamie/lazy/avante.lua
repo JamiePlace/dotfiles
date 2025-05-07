@@ -15,6 +15,11 @@ return {
                 __inherited_from = "bedrock",
                 api_key_name = "BEDROCK_KEYS",
                 model = "us.anthropic.claude-3-5-haiku-20241022-v1:0",
+             },
+            ["Agent-Einstein"] = {
+                __inherited_from = "bedrock",
+                api_key_name = "BEDROCK_KEYS",
+                model = "us.mistral.pixtral-large-2502-v1:0",
              }
         },
         behaviour = {

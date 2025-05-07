@@ -53,10 +53,10 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<C-'>", ":vsp<CR>", { silent = true })
 vim.keymap.set("n", "<C-;>", ":sp<CR>", { silent = true })
 -- resize with arrows
-vim.keymap.set("n", "<M-J>", "2<C-w>-", { silent = true })
-vim.keymap.set("n", "<M-K>", "2<C-w>+", { silent = true })
-vim.keymap.set("n", "<M-H>", "2<C-w><", { silent = true })
-vim.keymap.set("n", "<M-L>", "2<C-w>>", { silent = true })
+vim.keymap.set({"n", "t", "v"}, "<M-J>", "2<C-w>-", { silent = true })
+vim.keymap.set({"n", "t", "v"}, "<M-K>", "2<C-w>+", { silent = true })
+vim.keymap.set({"n", "t", "v"}, "<M-H>", "2<C-w><", { silent = true })
+vim.keymap.set({"n", "t", "v"}, "<M-L>", "2<C-w>>", { silent = true })
 -- jump to previous buffer
 vim.keymap.set("n", "<leader>ll", ":b#<CR>", { silent = true })
 
