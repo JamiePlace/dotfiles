@@ -13,7 +13,34 @@ return {
         "folke/neodev.nvim"
     },
     config = function()
-        require("dap-python").setup("python")
+        -- Setup dap-python with project root as cwd
+        local path = require('plenary.path')
+        require("dap-python").setup("python", {
+            -- This will make dap-python start debugging from the project root
+            cwd = function()
+                -- Try to find the project root using common project markers
+                local markers = {'pyproject.toml'}
+                local cwd = vim.fn.getcwd()
+                for _, marker in ipairs(markers) do
+                    -- Search upward for project markers
+                    local root = vim.fs.find(marker, {
+                        upward = false,
+                        path = cwd,
+                        type = 'file'
+                    })[1]
+                    if root then
+                        return vim.fs.dirname(root)
+                    end
+                end
+                -- Fallback to current working directory
+                return cwd
+            end,
+            -- You can also set pythonPath if needed
+            -- pythonPath = function()
+            --     -- Return path to python from active virtual environment
+            --     return path.join(vim.fn.getcwd(), '.venv', 'bin', 'python')
+            -- end,
+        })
         require('nvim-dap-repl-highlights').setup()
         -- keybindings
         vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
@@ -27,7 +54,7 @@ return {
         vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })
 
         vim.keymap.set("n", "<leader>br", ':DapToggleBreakpoint<CR>', { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>ebr", ':lua require("dap").set_breakpoint(vim.fn.input("Breakpoint Condition > "))<CR>', { noremap = true, silent = true })
+        vim.keymap.set("n", "<leader>cbr", ':lua require("dap").set_breakpoint(vim.fn.input("Breakpoint Condition > "))<CR>', { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>dd", ':DapContinue<CR>', { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>de", function()
             vim.cmd("vsp dap-eval://python")

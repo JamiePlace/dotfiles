@@ -77,11 +77,22 @@ return {
             -- Fallback to system Python
             return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
         end
+        local root_files = {
+            "pyproject.toml", "setup.py", "setup.cfg",
+            "requirements.txt", "Pipfile", ".git"
+        }
+
+        local find_root = function(fname)
+            return util.root_pattern(unpack(root_files))(fname)
+                or util.find_git_ancestor(fname)
+                or util.path.dirname(fname)
+        end
 
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "pyright",
+                "ruff",
                 "lua_ls",
                 "rust_analyzer",
                 "gopls",
@@ -105,6 +116,7 @@ return {
                         settings = {
                             python = {
                                 analysis = {
+                                    ignore = { "*"},
                                     autoSearchPaths = true,
                                     diagnosticMode = "openFilesOnly",
                                     useLibraryCodeForTypes = true,
@@ -112,6 +124,11 @@ return {
                                 }
                             },
                         }
+                    }
+                end,
+                ["ruff"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ruff.setup {
                     }
                 end,
                 ["rust_analyzer"] = function()

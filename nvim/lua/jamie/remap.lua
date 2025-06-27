@@ -8,6 +8,20 @@ vim.keymap.set("n", "<leader>m", function()
   vim.api.nvim_put({ 'if __name__ == "__main__":' }, 'l', true, true)
 end, { desc = "Insert Python main check" })
 
+-- run python file in split to the bottom
+vim.keymap.set("n", "<leader>rr", function()
+  vim.cmd("40 split")
+  vim.cmd("wincmd j")
+  vim.cmd("terminal python %")
+end, { desc = "Run Python file in split" })
+
+-- run rye sync to update dependencies
+vim.keymap.set("n", "<leader>rs", function()
+    vim.cmd("40 vsplit")
+    vim.cmd("wincmd l")
+    vim.cmd("terminal rye sync")
+end, { desc = "rye sync" })
+
 -- proportional symbol
 vim.keymap.set("i", "<C-a>", "∝", { desc = "proportional" })
 vim.keymap.set("i", "<C-d>", function()

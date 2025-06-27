@@ -54,7 +54,7 @@ if not OnUnix() then
     config.default_domain = 'WSL:Ubuntu'
     wezterm.home_dir = '/home/jamie/'
 end
-config.color_scheme = "One Dark (Gogh)"
+config.color_scheme = "Gruvbox Dark (Gogh)"
 local process_icons = {
   ['docker'] = wezterm.nerdfonts.linux_docker,
   ['docker-compose'] = wezterm.nerdfonts.linux_docker,
@@ -152,5 +152,6 @@ config.colors = {
 --config.tab_bar_at_bottom = true
 -- remove ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+
 return config
 
