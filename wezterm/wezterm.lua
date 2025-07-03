@@ -87,9 +87,16 @@ local process_icons = {
 }
 
 wezterm.on('update-right-status', function(window, pane)
-  window:set_right_status(window:active_workspace() .. "   ")
-end)
+    if wezterm.GLOBAL.current_workspace ~= window:active_workspace() then
+        if wezterm.GLOBAL.current_workspace ~= nil then
+            wezterm.GLOBAL.previous_workspace = wezterm.GLOBAL.current_workspace
+        end
+        wezterm.GLOBAL.current_workspace = window:active_workspace()
+        wezterm.log_info("Workspace changed from: " .. wezterm.GLOBAL.previous_workspace .. " to: " .. wezterm.GLOBAL.current_workspace)
+    end
 
+    window:set_right_status(window:active_workspace() .. "   ")
+end)
 
 mouse_bindings = {
     {

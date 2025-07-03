@@ -54,5 +54,5 @@ wezterm.on('gui-startup', function(cmd)
     --Wobsidian()
     -- projects
     projects()
-    mux.set_active_workspace 'home'
+    mux.set_active_workspace '🏠 home'
 end)

@@ -1,16 +1,38 @@
 -- fugitive
 return {
     "tpope/vim-fugitive",
+    dependencies = {
+        "nvim-telescope/telescope.nvim",
+    },
     config = function()
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-        -- git checkout by passing the branch name
-        vim.keymap.set("n", "<leader>co", function ()
-            local branch = vim.fn.input("ExistingBranch> ")
-            if branch == nil or branch == "" then
-                return
-            end
-            vim.cmd('Git checkout ' .. branch)
-        end, {desc = "Git checkout branch"})
+        -- git checkout using telescope to filter branches
+        vim.keymap.set("n", "<leader>co", function()
+            -- Use telescope git_branches picker
+            require('telescope.builtin').git_branches({
+                prompt_title = "Git Branches",
+                show_remote_tracking_branches = true,
+                attach_mappings = function(_, map)
+                    -- Add custom mapping to checkout the selected branch
+                    map('i', '<CR>', function(prompt_bufnr)
+                        local selection = require('telescope.actions.state').get_selected_entry()
+                        require('telescope.actions').close(prompt_bufnr)
+                        if selection then
+                            -- Extract branch name and checkout
+                            local branch = selection.value
+                            if branch:match("^remotes/") then
+                                -- Handle remote branches by creating a local tracking branch
+                                branch = branch:gsub("^remotes/[^/]+/", "")
+                                vim.cmd('Git checkout -b ' .. branch .. ' ' .. selection.value)
+                            else
+                                vim.cmd('Git checkout ' .. branch)
+                            end
+                        end
+                    end)
+                    return true
+                end
+            })
+        end, {desc = "Git checkout branch (with filter)"})
         -- git checkout a new branch
         vim.keymap.set("n", "<leader>cO", function ()
             local branch = vim.fn.input("NewBranch> ")

@@ -130,6 +130,12 @@ local function list_directories_with_git(path)
     return dirs_with_git
 end
 
+wezterm.on('workspace-changed', function(window, pane, info)
+  if info.old_workspace ~= info.new_workspace then
+    wezterm.GLOBAL.previous_workspace = info.old_workspace
+  end
+end)
+
 local keys = {
     {
         key = '?',
@@ -387,8 +393,21 @@ local keys = {
     { key = 'p', mods = 'ALT', action = wezterm.action.PasteFrom 'Clipboard' },
     { key = '=', mods = 'CTRL', action = wezterm.action.IncreaseFontSize },
     { key = '-', mods = 'CTRL', action = wezterm.action.DecreaseFontSize },
-    { key = ']', mods = 'ALT', action = act.SwitchWorkspaceRelative(1) },
-    { key = '[', mods = 'ALT', action = act.SwitchWorkspaceRelative(-1) },
+    {
+        key = ']', mods = 'ALT', action = wezterm.action_callback(
+            function(window, pane)
+                -- select workspace form GLOBAL.previous_workspace
+                if wezterm.GLOBAL.previous_workspace then
+                    window:perform_action(
+                        act.SwitchToWorkspace {
+                            name = wezterm.GLOBAL.previous_workspace,
+                        }, pane)
+                else
+                    wezterm.log_info("No previous workspace found")
+                end
+            end
+        )
+    },
     -- Prompt for a name to use for a new workspace and switch to it.
     {
         key = 'W',
